@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 require('dotenv').config()
 const PORT = process.env.PORT || 3000;
 
@@ -8,6 +11,11 @@ const app = express();
 
 //Use react for views
 app.use(express.static(path.join(__dirname, "client", "dist")));
+//Express Middleware
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
