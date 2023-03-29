@@ -12,3 +12,4 @@ This inventory app manages and helps organize your things into an easy to unders
 - [Vite](https://vitejs.dev/)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
+- [Node](https://nodejs.org/en)
