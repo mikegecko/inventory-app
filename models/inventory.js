@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const InventorySchema = new Schema({
     title: {type: String, required: true},
     description: {type: String, required: false},
-    category: {type: String, required: true},
+    category: {type: String, required: false},
     quantity: {type: Number, required: true},
     price: {type: Number, required: false},
     added: {type: Date, required: true},
