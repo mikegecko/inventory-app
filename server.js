@@ -6,7 +6,7 @@ const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require('cors');
-const db = require('./db.js');
+const db = require('./utils/db');
 //Environment vars
 const PORT = process.env.PORT || 3000;
 
