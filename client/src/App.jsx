@@ -11,7 +11,6 @@ function App() {
     axios
       .get("/api/inventory")
       .then((res) => {
-        console.log('log' + res.data);
         setInventoryItems(res.data);
       })
       .catch((err) => {
