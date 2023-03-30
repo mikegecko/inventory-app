@@ -10,7 +10,7 @@ const InventorySchema = new Schema({
     added: {type: Date, required: true},
     updated: {type: Date, required: false},
     image: {data: Buffer, contentType: String}
-})
+}, {collection: 'items'})
 // Virtual URL
 // InventorySchema.virtual('url').get(function() {
 //     return `/inventory/${this._id}`;
