@@ -18,6 +18,9 @@ const usersRouter = require('./routes/users');
 
 const app = express();
 
+// CORS 
+app.options('*', cors())
+app.use(cors());
 //Use react for views
 app.use(express.static(path.join(__dirname, "client", "dist")));
 //Express Middleware
@@ -26,16 +29,8 @@ app.use(express.json()); //Use json instead of html
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// CORS 
-app.options('*', cors())
 //Routes
 app.use('/api/inventory', inventoryRouter);
-// Catch all route for undefined routes
-// Must be defined LAST
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-});
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
