@@ -6,7 +6,7 @@ const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require('cors');
-
+const db = require('./db.js');
 //Environment vars
 const PORT = process.env.PORT || 3000;
 
@@ -29,7 +29,7 @@ app.use(cookieParser());
 // CORS 
 app.options('*', cors())
 //Routes
-app.use('/inventory', inventoryRouter);
+app.use('/api/inventory', inventoryRouter);
 // Catch all route for undefined routes
 // Must be defined LAST
 app.get("*", (req, res) => {
