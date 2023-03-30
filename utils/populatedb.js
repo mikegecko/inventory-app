@@ -1,8 +1,8 @@
 #! /usr/bin/env node
 console.log('This script populates db with some placeholder items. Specified database as argument - e.g.: node populatedb "mongodb+srv://mjgeko:<password>@cluster0.ftvxotu.mongodb.net/?retryWrites=true&w=majority"');
 const mongoose = require("mongoose");
-const Inventory = require("./models/inventory");
-
+const Inventory = require('../models/inventory');
+mongoose.set("strictQuery", false);
 const userArgs = process.argv.slice(2);
 const mongoDB = userArgs[0];
 
@@ -29,7 +29,7 @@ const items = [
     added: new Date(),
   },
 ];
-
+main().catch((err) => console.log(err));
 async function main() {
     console.log("Debug: About to connect");
     await mongoose.connect(mongoDB);
@@ -47,14 +47,9 @@ async function itemCreate() {
       description: items[i].description,
       price: items[i].price,
       quantity: items[i].quantity,
+      added: items[i].added
     });
     // save the inventory item to the database
-    inventoryItem.save(function (err) {
-      if (err) {
-        console.log("Error adding inventory item: " + inventoryItem.title);
-      } else {
-        console.log("Inventory item added: " + inventoryItem.title);
-      }
-    });
+    await inventoryItem.save();
   }
 }
