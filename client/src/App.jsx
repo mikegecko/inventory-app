@@ -12,6 +12,13 @@ function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [colorMode, setColorMode] = useState('dark');
+
+
+  const handleModeChange = (event, newMode) => {
+    setColorMode(newMode);
+  }
+
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -61,7 +68,7 @@ function App() {
             flexDirection: "row",
           }}
         >
-          <Sidebar />
+          <Sidebar colorMode={colorMode} handleModeChange={handleModeChange} />
           <Box sx={{ width: "100%" }}>
             <Header />
             <div>
