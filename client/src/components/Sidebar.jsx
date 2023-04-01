@@ -1,12 +1,14 @@
-import { Box } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 
 
 export default function Sidebar(){
     
 
     return(
-        <Box sx={{width: '30%'}}>
-            <h4>Sidebar</h4>
+        <Box sx={{width: '30%', height: '100%'}}>
+            <Paper variant="outlined" sx={{height: 'inherit'}} elevation={1} square>
+                Sidebar
+            </Paper>
         </Box>
     )
 }
