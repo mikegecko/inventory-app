@@ -31,16 +31,3 @@ export default function InventoryDashboard(props){
         </Box>
     )
 }
-
-
-{/* <div>
-              <ul>
-                {!props.inventoryItems ? (
-                  <li>No Items Found</li>
-                ) : (
-                  props.inventoryItems.map((item) => (
-                    <li key={item._id}>{item.title}</li>
-                  ))
-                )}
-              </ul>
-            </div> */}
