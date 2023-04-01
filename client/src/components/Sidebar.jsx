@@ -6,7 +6,7 @@ export default function Sidebar(){
 
     return(
         <Box sx={{width: '30%', height: '100%'}}>
-            <Paper variant="outlined" sx={{height: 'inherit'}} elevation={1} square>
+            <Paper  sx={{height: 'inherit'}} elevation={1} square>
                 Sidebar
             </Paper>
         </Box>
