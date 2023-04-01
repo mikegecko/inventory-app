@@ -6,10 +6,12 @@ import axios from "axios";
 import Sidebar from "./components/Sidebar";
 import { Box, ThemeProvider } from "@mui/material";
 import { theme } from "./components/Themes";
+import Header from "./components/Header";
 
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [colorMode, setColorMode] = useState('dark');
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -61,8 +63,7 @@ function App() {
         >
           <Sidebar />
           <Box sx={{ width: "100%" }}>
-            <h1>Inventory</h1>
-
+            <Header />
             <div>
               <ul>
                 {!inventoryItems ? (
