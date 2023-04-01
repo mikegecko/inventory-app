@@ -3,6 +3,8 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
+import Sidebar from "./components/Sidebar";
+import { Box } from "@mui/material";
 
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -16,23 +18,29 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-
   }, []);
   useEffect(() => {
     console.log(inventoryItems);
   }, [inventoryItems]);
 
-
   return (
     <div className="App">
+      <Box sx={{display: 'flex'}}>
+      <Sidebar />
+      <Box>
       <h1>Inventory</h1>
-      <div>
-        <ul>
-          {!inventoryItems ? <li>No Items Found</li> : inventoryItems.map((item) => (
-            <li key={item._id}>{item.title}</li>
-          ))}
-        </ul>
-      </div>
+        
+        <div>
+          <ul>
+            {!inventoryItems ? (
+              <li>No Items Found</li>
+            ) : (
+              inventoryItems.map((item) => <li key={item._id}>{item.title}</li>)
+            )}
+          </ul>
+        </div>
+      </Box>
+      </Box>
     </div>
   );
 }
