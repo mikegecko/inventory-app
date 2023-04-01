@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <Box sx={{display: 'flex'}}>
+      <Box sx={{display: 'flex', alignItems: "flex-start", justifyContent: 'flex-start'}}>
       <Sidebar />
       <Box>
       <h1>Inventory</h1>
