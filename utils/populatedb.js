@@ -28,6 +28,41 @@ const items = [
     quantity: 100,
     added: new Date(),
   },
+  {
+    title: "Blue T-Shirt",
+    description: "This is a blue t-shirt",
+    price: 19.99,
+    quantity: 50,
+    added: new Date()
+  },
+  {
+    title: "Red Hoodie",
+    description: "This is a red hoodie",
+    price: 29.99,
+    quantity: 50,
+    added: new Date()
+  },
+  {
+    title: "Black Jeans",
+    description: "These are black jeans",
+    price: 39.99,
+    quantity: 50,
+    added: new Date()
+  },
+  {
+    title: "Brown Boots",
+    description: "These are brown boots",
+    price: 79.99,
+    quantity: 50,
+    added: new Date()
+  },
+  {
+    title: "Silver Watch",
+    description: "This is a silver watch",
+    price: 99.99,
+    quantity: 50,
+    added: new Date()
+  },
 ];
 main().catch((err) => console.log(err));
 async function main() {
