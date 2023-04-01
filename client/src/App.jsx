@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import axios from "axios";
 import Sidebar from "./components/Sidebar";
 import { Box, ThemeProvider } from "@mui/material";
 import { theme } from "./components/Themes";
 import Header from "./components/Header";
+import InventoryDashboard from "./components/InventoryDashboard";
 
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -69,19 +68,9 @@ function App() {
           }}
         >
           <Sidebar colorMode={colorMode} handleModeChange={handleModeChange} />
-          <Box sx={{ width: "100%" }}>
+          <Box sx={{ width: "100%", height: '100%' }}>
             <Header />
-            <div>
-              <ul>
-                {!inventoryItems ? (
-                  <li>No Items Found</li>
-                ) : (
-                  inventoryItems.map((item) => (
-                    <li key={item._id}>{item.title}</li>
-                  ))
-                )}
-              </ul>
-            </div>
+            <InventoryDashboard inventoryItems={inventoryItems} />
           </Box>
         </Box>
       </ThemeProvider>
