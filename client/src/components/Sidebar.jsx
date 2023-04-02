@@ -49,20 +49,28 @@ export default function Sidebar(props) {
             onChange={handleChange}
           >
             <ToggleButton value='home'>
+                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <HomeIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Home</Typography>
+              </Box>
             </ToggleButton>
             <ToggleButton value='inventory'>
+            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <InventoryIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Inventory</Typography>
+              </Box>
             </ToggleButton>
             <ToggleButton value='tools'>
+            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <HandymanIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Tools</Typography>
+              </Box>
             </ToggleButton>
             <ToggleButton value='settings'>
+            <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <SettingsIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Settings</Typography>
+              </Box>
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
