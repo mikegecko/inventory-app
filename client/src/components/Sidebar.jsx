@@ -14,11 +14,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useState } from "react";
 
 export default function Sidebar(props) {
-    const [alignment, setAlignment] = useState('home');
+    
 
-    const handleChange = (event, newAlignment) => {
-        setAlignment(newAlignment);
-    }
+    
 
 
 
@@ -45,8 +43,8 @@ export default function Sidebar(props) {
             sx={{ width: "100%", textAlign: 'left' }}
             orientation="vertical"
             exclusive
-            value={alignment}
-            onChange={handleChange}
+            value={props.page}
+            onChange={props.handlePageChange}
             color="primary"
           >
             <ToggleButton value='home'>

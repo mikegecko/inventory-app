@@ -10,13 +10,15 @@ import InventoryDashboard from "./components/InventoryDashboard";
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [colorMode, setColorMode] = useState('dark');
+  const [colorMode, setColorMode] = useState("dark");
+  const [page, setPage] = useState("home");
 
-
+  const handlePageChange = (event, newpage) => {
+    setPage(newpage);
+  };
   const handleModeChange = (event, newMode) => {
     setColorMode(newMode);
-  }
-
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,8 +69,13 @@ function App() {
             flexDirection: "row",
           }}
         >
-          <Sidebar colorMode={colorMode} handleModeChange={handleModeChange} />
-          <Box sx={{ width: "100%", height: '100%' }}>
+          <Sidebar
+            colorMode={colorMode}
+            handleModeChange={handleModeChange}
+            page={page}
+            handlePageChange={handlePageChange}
+          />
+          <Box sx={{ width: "100%", height: "100%" }}>
             <Header />
             <InventoryDashboard inventoryItems={inventoryItems} />
           </Box>
