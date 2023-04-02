@@ -20,13 +20,15 @@ export default function InventoryDashboard(props){
         {field: 'id', headerName: 'ID', width: 70},
         {field: 'title', headerName: 'Name', width: 160},
         {field: 'description', headerName: 'Description', width: 200},
-        {field: 'price', headerName: 'Price', width: 90, type: 'number'},
-        {field: 'quantity', headerName: 'Qty', width:90, type: 'number'},
-        {field: '_id', headerName: '_id', width: 90}
+        {field: 'category', headerName: 'Category', width: 160},
+        {field: 'price', headerName: 'Price', width: 70, type: 'number'},
+        {field: 'quantity', headerName: 'Qty', width:70, type: 'number'},
+        {field: '_id', headerName: '_id', width: 210}
+        
     ]
 
     return(
-        <Box sx={{width: '100%', height: 'calc(100% - 64px)'}}>
+        <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 104px)', margin: '20px'}}>
             <DataGrid  columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
         </Box>
     )

@@ -47,9 +47,10 @@ export default function Sidebar(props) {
             exclusive
             value={alignment}
             onChange={handleChange}
+            color="primary"
           >
             <ToggleButton value='home'>
-                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
+                <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem', mt: '4px'}}>
               <HomeIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Home</Typography>
               </Box>
