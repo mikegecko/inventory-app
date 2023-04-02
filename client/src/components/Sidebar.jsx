@@ -40,32 +40,32 @@ export default function Sidebar(props) {
             </Typography>
         </Box>
           <ToggleButtonGroup
-            sx={{ width: "100%", textAlign: 'left' }}
+            sx={{ width: "90%", textAlign: 'left', border: 0 }}
             orientation="vertical"
             exclusive
             value={props.page}
             onChange={props.handlePageChange}
             color="primary"
           >
-            <ToggleButton value='home'>
+            <ToggleButton value='home' sx={{border: 0}}>
                 <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem', mt: '4px'}}>
               <HomeIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Home</Typography>
               </Box>
             </ToggleButton>
-            <ToggleButton value='inventory'>
+            <ToggleButton value='inventory' sx={{border: 0}}>
             <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <InventoryIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Inventory</Typography>
               </Box>
             </ToggleButton>
-            <ToggleButton value='tools'>
+            <ToggleButton value='tools' sx={{border: 0}}>
             <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <HandymanIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Tools</Typography>
               </Box>
             </ToggleButton>
-            <ToggleButton value='settings'>
+            <ToggleButton value='settings' sx={{border: 0}}>
             <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', width: '100%', gap: '1rem'}}>
               <SettingsIcon color="primary" />
               <Typography sx={{ mt: 0.5 }}>Settings</Typography>
