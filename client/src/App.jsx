@@ -11,11 +11,35 @@ import Settings from "./components/Settings";
 import Tools from "./components/Tools";
 
 function App() {
-  const [inventoryItems, setInventoryItems] = useState([]);
+  const [inventoryItems, setInventoryItems] = useState([]); //Inventory -> set by axios api endpoint call to server.js
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [colorMode, setColorMode] = useState("dark");
-  const [page, setPage] = useState("home");
+  const [colorMode, setColorMode] = useState("dark"); // Light/Dark mode
+  const [page, setPage] = useState("home"); //Page control for pageSelect
+  /* Modal Controls */
+  const [openNew, setOpenNew] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
+  const handleClickOpenModal = (event) => {
+    switch (event.target.id) {
+      case "add":
+        setOpenNew(true);
+        break;
+      case "edit":
+        setOpenEdit(true);
+        break;
+      case "del":
+        setOpenDelete(true);
+        break;
+      default:
+        break;
+    }
+  };
+  const handleClose = (event) => {
+    setOpenNew(false);
+    setOpenEdit(false);
+    setOpenDelete(false);
+  };
   const handlePageChange = (event, newpage) => {
     setPage(newpage);
   };
@@ -25,19 +49,28 @@ function App() {
 
   const pageSelect = () => {
     switch (page) {
-      case 'home':
-        return <Home />
-      case 'inventory':
-        return <InventoryDashboard inventoryItems={inventoryItems} />
-      case 'tools':
-        return  <Tools />
-      case 'settings':
-        return <Settings />
+      case "home":
+        return <Home />;
+      case "inventory":
+        return (
+          <InventoryDashboard
+            inventoryItems={inventoryItems}
+            openNew={openNew}
+            openEdit={openEdit}
+            openDelete={openDelete}
+            handleClose={handleClose}
+            handleClickOpenModal={handleClickOpenModal}
+          />
+        );
+      case "tools":
+        return <Tools />;
+      case "settings":
+        return <Settings />;
       default:
-        return <Home />
+        return <Home />;
         break;
     }
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {

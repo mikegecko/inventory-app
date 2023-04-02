@@ -1,9 +1,10 @@
 import styled from "@emotion/styled";
-import { Box, Button, ButtonGroup, Paper } from "@mui/material";
+import { Box, Button, ButtonGroup, Dialog, IconButton, Paper } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CreateItemForm from "./CreateItemForm";
 
 export default function InventoryDashboard(props){
 
@@ -29,17 +30,20 @@ export default function InventoryDashboard(props){
     ]
 
     return(
+        <>
+        <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} />
         <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 157px)', margin: ' 0 20px 20px 20px'}}>
             <Box sx={{display: 'flex', justifyContent: 'center', mb: '10px', mt: '10px'}}>
                 <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
                     <ButtonGroup color="primary" sx={{ width: 'auto'}}>
-                        <Button><AddIcon /></Button>
-                        <Button><EditIcon /></Button>
-                        <Button><DeleteIcon /></Button>
+                        <Button id="add" onClick={props.handleClickOpenModal}><AddIcon sx={{pointerEvents: 'none'}} /></Button>
+                        <Button id="edit"><EditIcon sx={{pointerEvents: 'none'}} /></Button>
+                        <Button id="del" ><DeleteIcon sx={{pointerEvents: 'none'}} /></Button>
                     </ButtonGroup>
                 </Paper>
             </Box>
             <DataGrid  columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
         </Box>
+        </>
     )
 }
