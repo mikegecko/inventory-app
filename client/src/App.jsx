@@ -7,6 +7,8 @@ import { theme } from "./components/Themes";
 import Header from "./components/Header";
 import InventoryDashboard from "./components/InventoryDashboard";
 import Home from "./components/Home";
+import Settings from "./components/Settings";
+import Tools from "./components/Tools";
 
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -28,9 +30,9 @@ function App() {
       case 'inventory':
         return <InventoryDashboard inventoryItems={inventoryItems} />
       case 'tools':
-        return
+        return  <Tools />
       case 'settings':
-        return
+        return <Settings />
       default:
         return <Home />
         break;
