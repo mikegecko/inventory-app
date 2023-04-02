@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { AppBar, Box, InputBase, Paper, Toolbar, Typography, alpha } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-export default function Header() {
+export default function Header(props) {
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -54,6 +54,7 @@ export default function Header() {
           </SearchIconWrapper>
           <StyledInputBase
               placeholder="Search…"
+              disabled={props.page !== 'inventory'}
               inputProps={{ 'aria-label': 'search' }}
             />
         </Search>

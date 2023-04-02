@@ -95,7 +95,7 @@ function App() {
             handlePageChange={handlePageChange}
           />
           <Box sx={{ width: "100%", height: "100%" }}>
-            <Header />
+            <Header page={page} />
             {pageSelect()}
           </Box>
         </Box>
