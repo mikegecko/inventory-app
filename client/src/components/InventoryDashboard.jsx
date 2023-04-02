@@ -1,8 +1,9 @@
 import styled from "@emotion/styled";
-import { Box, Paper } from "@mui/material";
+import { Box, Button, ButtonGroup, Paper } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
-
-
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function InventoryDashboard(props){
 
@@ -28,7 +29,16 @@ export default function InventoryDashboard(props){
     ]
 
     return(
-        <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 104px)', margin: '20px'}}>
+        <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 157px)', margin: ' 0 20px 20px 20px'}}>
+            <Box sx={{display: 'flex', justifyContent: 'center', mb: '10px', mt: '10px'}}>
+                <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
+                    <ButtonGroup color="primary" sx={{ width: 'auto'}}>
+                        <Button><AddIcon /></Button>
+                        <Button><EditIcon /></Button>
+                        <Button><DeleteIcon /></Button>
+                    </ButtonGroup>
+                </Paper>
+            </Box>
             <DataGrid  columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
         </Box>
     )
