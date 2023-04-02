@@ -6,6 +6,7 @@ import { Box, ThemeProvider } from "@mui/material";
 import { theme } from "./components/Themes";
 import Header from "./components/Header";
 import InventoryDashboard from "./components/InventoryDashboard";
+import Home from "./components/Home";
 
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]);
@@ -19,6 +20,22 @@ function App() {
   const handleModeChange = (event, newMode) => {
     setColorMode(newMode);
   };
+
+  const pageSelect = () => {
+    switch (page) {
+      case 'home':
+        return <Home />
+      case 'inventory':
+        return <InventoryDashboard inventoryItems={inventoryItems} />
+      case 'tools':
+        return
+      case 'settings':
+        return
+      default:
+        return <Home />
+        break;
+    }
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -77,7 +94,7 @@ function App() {
           />
           <Box sx={{ width: "100%", height: "100%" }}>
             <Header />
-            <InventoryDashboard inventoryItems={inventoryItems} />
+            {pageSelect()}
           </Box>
         </Box>
       </ThemeProvider>
