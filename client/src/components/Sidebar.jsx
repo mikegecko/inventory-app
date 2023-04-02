@@ -75,7 +75,8 @@ export default function Sidebar(props) {
             </ToggleButton>
           </ToggleButtonGroup>
         </Box>
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: 2, width: '100%', display: 'flex', justifyContent: 'center' }}>
+        <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
           <ToggleButtonGroup
             sx={{ height: "2.5rem" }}
             color="primary"
@@ -83,6 +84,7 @@ export default function Sidebar(props) {
             exclusive
             onChange={props.handleModeChange}
           >
+            
             <ToggleButton value="light">
               <LightModeIcon sx={{ mr: 1 }} />
               Light
@@ -91,7 +93,9 @@ export default function Sidebar(props) {
               <NightsStayIcon sx={{ mr: 1 }} />
               Dark
             </ToggleButton>
+            
           </ToggleButtonGroup>
+          </Paper>
         </Box>
       </Paper>
     </Box>
