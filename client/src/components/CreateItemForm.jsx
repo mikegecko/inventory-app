@@ -47,10 +47,10 @@ export default function CreateItemForm(props) {
         if(item.title === null || item.title === ''){
             errors.name = true;
         }
-        if(item.quantity < 0 || item.quantity === null){
+        if(item.quantity === '' || item.quantity === null){
             errors.quantity = true;
         }
-        if(item.price < 0 || item.price === null){
+        if(item.price === '' || item.price === null){
             errors.price = true;
         }
         setErrors({...errors});
@@ -60,7 +60,11 @@ export default function CreateItemForm(props) {
 
         // }
     }
-
+    const handleClear = (e) => {
+        setItem(itemStruct);
+        setErrors({});
+        props.handleClose(e);
+    }
     useEffect(() => {
         console.log(item);
     }, [item])
@@ -85,7 +89,7 @@ export default function CreateItemForm(props) {
             </DialogContent>
             <DialogActions>
                 <Button onClick={checkValidFields}>Submit</Button>
-                <Button onClick={props.handleClose}>Cancel</Button>
+                <Button onClick={handleClear}>Cancel</Button>
             </DialogActions>
         </Dialog>
     )

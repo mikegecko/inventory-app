@@ -20,6 +20,8 @@ function App() {
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
 
+  const [newItem, setNewItem] = useState();
+
   const handleClickOpenModal = (event) => {
     switch (event.target.id) {
       case "add":
