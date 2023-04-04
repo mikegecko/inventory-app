@@ -55,8 +55,9 @@ export default function CreateItemForm(props) {
         }
         setErrors({...errors});
         if(Object.keys(errors).length === 0 && errors.constructor === Object){
-            setItem({...item, added: new Date()});
-            props.handleNewItemSubmit(item);
+            const subItem = {...item, added: new Date()} //Add date here since state updates are async
+            props.handleNewItemSubmit(subItem);
+            handleClear(event);
         }
     }
     const handleClear = (e) => {
