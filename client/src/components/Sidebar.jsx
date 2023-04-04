@@ -12,7 +12,7 @@ import HandymanIcon from "@mui/icons-material/Handyman";
 import InventoryIcon from '@mui/icons-material/Inventory';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { useState } from "react";
-
+import logoUrl from '../assets/inv_clear.png';
 export default function Sidebar(props) {
     
 
@@ -35,8 +35,8 @@ export default function Sidebar(props) {
         
         <Box sx={{  width: "100%" }}>
         <Box sx={{ height: '64px', }}>
-            <Typography sx={{display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center'}} variant="h4">
-                Logo
+            <Typography sx={{display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', gap: '1rem'}} variant="p">
+              <img className="logo" src={logoUrl} alt="Inventory Manager Logo" />Inventory Manager
             </Typography>
         </Box>
           <ToggleButtonGroup

@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { AppBar, Box, InputBase, Paper, Toolbar, Typography, alpha } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import logoUrl from '../assets/inv_clear.png';
 export default function Header(props) {
     const Search = styled('div')(({ theme }) => ({
         position: 'relative',
@@ -46,7 +47,7 @@ export default function Header(props) {
     <Box sx={{flexGrow: 1}}>
     <AppBar position="static">
       <Toolbar>
-        <Typography mr={2}>LOGO</Typography>
+        <img className="logo" src={logoUrl} alt="Inventory Manager Logo" />
         <Typography variant="h4" component='div' sx={{flexGrow: 1,}}>Inventory Manager</Typography>
         <Search>
           <SearchIconWrapper>
