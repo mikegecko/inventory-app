@@ -54,11 +54,10 @@ export default function CreateItemForm(props) {
             errors.price = true;
         }
         setErrors({...errors});
-        // else{
-        //     console.log('no errors');
-        //     setItem({...item, added: new Date()});
-
-        // }
+        if(Object.keys(errors).length === 0 && errors.constructor === Object){
+            setItem({...item, added: new Date()});
+            props.handleNewItemSubmit(item);
+        }
     }
     const handleClear = (e) => {
         setItem(itemStruct);
