@@ -14,7 +14,7 @@ export default function InventoryDashboard(props){
             const element = newItems[index];
             element.id = index;
         }
-        console.log(newItems);
+        //console.log(newItems);
         return(newItems);
     }
 
