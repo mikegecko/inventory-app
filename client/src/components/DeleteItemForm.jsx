@@ -12,7 +12,15 @@ import {
 import { useEffect } from "react";
 
 export default function DeleteItemForm(props) {
-  const submitDelete = (e) => {};
+  const submitDelete = (e) => {
+    if(props.selectedItem !== undefined){
+        props.handleDeleteItemSubmit(props.selectedItem);
+    }
+    else{
+        console.log("No item selected");
+    }
+    props.handleClose();
+  };
 
   const dialogActive = () => {
     return (
@@ -94,10 +102,6 @@ export default function DeleteItemForm(props) {
     );
   };
 
-  useEffect(() => {
-    if (props.selectedItem !== undefined) {
-    }
-  }, []);
 
   return (
     <Dialog open={props.open} onClose={props.handleClose}>

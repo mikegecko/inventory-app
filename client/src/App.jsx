@@ -20,7 +20,17 @@ function App() {
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
 
-
+  const handleDeleteItemSubmit = async(delItem) => {
+    try{
+      const response = await axios.delete(`/api/inventory/${delItem._id}`, {
+        ...delItem
+      });
+      console.log('Deleted item', response.data);
+      retrieveItems();
+    }catch(error){
+      console.error(error);
+    }
+  }
   const handleNewItemSubmit = async(newItem) => {
     try{
       const response = await axios.post('/api/inventory', {
@@ -81,6 +91,7 @@ function App() {
             handleClose={handleClose}
             handleClickOpenModal={handleClickOpenModal}
             handleNewItemSubmit={handleNewItemSubmit}
+            handleDeleteItemSubmit={handleDeleteItemSubmit}
           />
         );
       case "tools":
