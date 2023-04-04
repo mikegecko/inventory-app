@@ -66,7 +66,7 @@ export default function CreateItemForm(props) {
         props.handleClose(e);
     }
     useEffect(() => {
-        console.log(item);
+        //console.log(item);
     }, [item])
     return(
         <Dialog open={props.open} onClose={props.handleClose}>
