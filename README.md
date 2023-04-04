@@ -20,10 +20,10 @@ To use the Inventory App, you will need to have Node.js and MongoDB installed on
 1. Clone the repository
 2. Install the required dependencies using `npm install`
 3. Create a `.env` file in the root directory
-3. Add a field called `MONGODB_CONNECTION_STRING=` to the `.env. file
-4. Paste in your MongoDB connection string with credentials in the <user> & <password> sections
-3. Start the server using `npm run dev`
-4. Navigate to `http://localhost:5173` in your web browser to use the app
+4. Add a field called `MONGODB_CONNECTION_STRING=` to the `.env. file
+5. Paste in your MongoDB connection string with credentials in the <user> & <password> sections
+6. Start the server using `npm run dev`
+7. Navigate to `http://localhost:5173` in your web browser to use the app
 
 ## Contributing
 Contributions to the Inventory App are always welcome! If you would like to contribute, please follow these steps:
