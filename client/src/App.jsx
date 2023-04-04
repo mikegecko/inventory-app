@@ -57,7 +57,14 @@ function App() {
     setPage(newpage);
   };
   const handleModeChange = (event, newMode) => {
-    setColorMode(newMode);
+    if(colorMode === 'dark'){
+      setColorMode('light');
+      return;
+    }
+    if(colorMode === 'light'){
+      setColorMode('dark')
+      return;
+    }
   };
 
   const pageSelect = () => {
@@ -112,6 +119,9 @@ function App() {
   useEffect(() => {
     console.log(inventoryItems);
   }, [inventoryItems]);
+  useEffect(() => {
+    console.log(colorMode);
+  }, [colorMode])
   /*
   -----------
   MOBILE VIEW
