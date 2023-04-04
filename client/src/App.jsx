@@ -27,6 +27,7 @@ function App() {
         ...newItem
       });
       console.log('Created new item', response.data);
+      retrieveItems();
     }catch(error){
       console.error(error)
     }
@@ -85,20 +86,24 @@ function App() {
     }
   };
 
+  const retrieveItems = async() => {
+    axios
+    .get("/api/inventory")
+    .then((res) => {
+      setInventoryItems(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
-    //Api endpoint test
-    axios
-      .get("/api/inventory")
-      .then((res) => {
-        setInventoryItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //Api endpoint retrieve items
+    retrieveItems();
 
     return () => {
       window.removeEventListener("resize", handleResize);
