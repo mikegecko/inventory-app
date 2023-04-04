@@ -11,7 +11,7 @@ router.get('/', inventory_controller.inventory_list);
 router.get('/:id', inventory_controller.inventory_detail);
 
 //POST a new inventory item
-router.post('/:id', inventory_controller.inventory_create);
+router.post('/', inventory_controller.inventory_create);
 
 // PUT update an exisiting inventory item by ID
 router.put('/:id', inventory_controller.inventory_update);
