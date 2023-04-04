@@ -20,7 +20,17 @@ function App() {
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
 
-  const [newItem, setNewItem] = useState();
+
+  const handleNewItemSubmit = async(newItem) => {
+    try{
+      const response = await axios.post('/api/inventory', {
+        ...newItem
+      });
+      console.log('Created new item', response.data);
+    }catch(error){
+      console.error(error)
+    }
+  }
 
   const handleClickOpenModal = (event) => {
     switch (event.target.id) {
@@ -62,6 +72,7 @@ function App() {
             openDelete={openDelete}
             handleClose={handleClose}
             handleClickOpenModal={handleClickOpenModal}
+            handleNewItemSubmit={handleNewItemSubmit}
           />
         );
       case "tools":

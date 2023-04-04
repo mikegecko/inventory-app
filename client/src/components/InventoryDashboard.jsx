@@ -31,7 +31,7 @@ export default function InventoryDashboard(props){
 
     return(
         <>
-        <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} />
+        <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} handleNewItemSubmit={props.handleNewItemSubmit} />
         <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 157px)', margin: ' 0 20px 20px 20px'}}>
             <Box sx={{display: 'flex', justifyContent: 'center', mb: '10px', mt: '10px'}}>
                 <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
