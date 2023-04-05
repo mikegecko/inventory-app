@@ -104,7 +104,7 @@ export default function EditItemForm(props) {
             sx={{ mr: 2 }}
             
             defaultValue={
-                item.title ? item.title : "No Name"
+                item.title ? item.title : ""
               }
           />
           <TextField
@@ -138,7 +138,7 @@ export default function EditItemForm(props) {
             }}
             sx={{ mr: 2 }}
             defaultValue={
-                item.price ? item.price : "No Price"
+                item.price ? item.price : ""
               }
           />
           <TextField
@@ -149,7 +149,7 @@ export default function EditItemForm(props) {
             label="Quantity"
             type="number"
             defaultValue={
-                item.quantity ? item.quantity: "No Quantity"
+                item.quantity ? item.quantity: ""
               }
           />
         </Box>
