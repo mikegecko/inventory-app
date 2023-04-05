@@ -48,7 +48,7 @@ export default function Header(props) {
     <AppBar position="static">
       <Toolbar>
         <img className="logo" src={logoUrl} alt="Inventory Manager Logo" />
-        <Typography variant="h4" component='div' sx={{flexGrow: 1,}}>Inventory Manager</Typography>
+        <Typography variant="h4" component='div' sx={{flexGrow: 1,}}></Typography>
         <Search>
           <SearchIconWrapper>
             <SearchIcon />

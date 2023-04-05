@@ -1,5 +1,6 @@
 import {
   Box,
+  Divider,
   Paper,
   ToggleButton,
   ToggleButtonGroup,
@@ -35,10 +36,11 @@ export default function Sidebar(props) {
         
         <Box sx={{  width: "100%" }}>
         <Box sx={{ height: '64px', }}>
-            <Typography sx={{display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', gap: '1rem'}} variant="p">
-              <img className="logo" src={logoUrl} alt="Inventory Manager Logo" />Inventory Manager
+            <Typography sx={{display: 'flex', height: '100%', alignItems: 'center', justifyContent: 'center', gap: '1rem', fontSize: '22px'}} variant="p">
+              Inventory Manager
             </Typography>
         </Box>
+        <Divider/>
           <ToggleButtonGroup
             sx={{ width: "90%", textAlign: 'left', border: 0 }}
             orientation="vertical"
