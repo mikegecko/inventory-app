@@ -9,7 +9,7 @@ import {
   InputAdornment,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function EditItemForm(props) {
   const itemStruct = {
@@ -29,19 +29,19 @@ export default function EditItemForm(props) {
   const handleItemUpdate = (e) => {
     const value = e.target.value;
     switch (e.target.id) {
-      case "new-item-name":
+      case "edit-item-name":
         setItem({ ...item, title: value });
         break;
-      case "new-item-category":
+      case "edit-item-category":
         setItem({ ...item, category: value });
         break;
-      case "new-item-desc":
+      case "edit-item-desc":
         setItem({ ...item, description: value });
         break;
-      case "new-item-price":
+      case "edit-item-price":
         setItem({ ...item, price: value });
         break;
-      case "new-item-qty":
+      case "edit-item-qty":
         setItem({ ...item, quantity: value });
         break;
 
@@ -64,16 +64,24 @@ export default function EditItemForm(props) {
     setErrors({ ...errors });
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
       const subItem = { ...item, updated: new Date() }; //Add updated here since state updates are async
+      //Add func for submitting edited item
       //props.handleNewItemSubmit(subItem);
       handleClear(event);
     }
   };
   const handleClear = (e) => {
-    setItem(itemStruct);
+    //Change this
+    //setItem(itemStruct); 
     setErrors({});
     props.handleClose(e);
   };
 
+  useEffect(() => {
+    setItem({...props.selectedItem});
+  }, [props.selectedItem])
+  useEffect(() => {
+    //console.log(item);
+  },[item])
   const dialogActive = () => {
     return (
       <DialogContent
@@ -94,17 +102,27 @@ export default function EditItemForm(props) {
             required
             label="Item Name"
             sx={{ mr: 2 }}
+            
+            defaultValue={
+                item.title ? item.title : "No Name"
+              }
           />
           <TextField
             id="edit-item-category"
             onChange={handleItemUpdate}
             label="Category"
+            defaultValue={
+                item.category ? item.category : ""
+              }
           />
         </Box>
         <TextField
           id="edit-item-desc"
           onChange={handleItemUpdate}
           label="Description"
+          defaultValue={
+            item.description ? item.description : ""
+          }
         />
         <Box>
           <TextField
@@ -119,6 +137,9 @@ export default function EditItemForm(props) {
               ),
             }}
             sx={{ mr: 2 }}
+            defaultValue={
+                item.price ? item.price : "No Price"
+              }
           />
           <TextField
             id="edit-item-qty"
@@ -127,6 +148,9 @@ export default function EditItemForm(props) {
             required
             label="Quantity"
             type="number"
+            defaultValue={
+                item.quantity ? item.quantity: "No Quantity"
+              }
           />
         </Box>
       </DialogContent>
