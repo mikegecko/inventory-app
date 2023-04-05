@@ -64,8 +64,7 @@ export default function EditItemForm(props) {
     setErrors({ ...errors });
     if (Object.keys(errors).length === 0 && errors.constructor === Object) {
       const subItem = { ...item, updated: new Date() }; //Add updated here since state updates are async
-      //Add func for submitting edited item
-      //props.handleNewItemSubmit(subItem);
+      props.handleUpdateItemSubmit(item);
       handleClear(event);
     }
   };
