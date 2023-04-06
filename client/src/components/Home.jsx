@@ -8,13 +8,6 @@ import {
 } from "@mui/material";
 
 export default function Home(props) {
-  /*
-        Display the following:
-        1. Total items
-        2. Total price of all items
-        3. Out of stock items
-        4. Low stock items
-    */
 
     const totalInventoryValue = () => {
         const items = props.inventoryItems;
@@ -37,7 +30,7 @@ export default function Home(props) {
         const items = props.inventoryItems;
         let lowItems = [];
         items.forEach(item => {
-            if(item.quantity <= 10){
+            if(item.quantity <= 10 && item.quantity > 0){
                 lowItems.push(item);
             }
         });
@@ -126,7 +119,11 @@ export default function Home(props) {
             >
               Out of Stock Items
             </Typography>
-            <Typography variant="p">- Hoodie</Typography>
+            <Typography variant="ul">{emptyInventoryStock().map((item,index) => {
+                return(
+                    <li key={index}>{item.title} - {item.quantity}</li>
+                )
+            })}</Typography>
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
