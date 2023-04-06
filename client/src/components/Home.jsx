@@ -35,9 +35,23 @@ export default function Home(props) {
     }
     const lowInventoryStock = () => {
         const items = props.inventoryItems;
+        let lowItems = [];
+        items.forEach(item => {
+            if(item.quantity <= 10){
+                lowItems.push(item);
+            }
+        });
+        return lowItems;
     }
     const emptyInventoryStock = () => {
         const items = props.inventoryItems;
+        let outItems = [];
+        items.forEach(item => {
+            if(item.quantity <= 0){
+                outItems.push(item);
+            }
+        });
+        return(outItems);
     }
 
   return (
