@@ -112,7 +112,7 @@ function App() {
       case "settings":
         return <Settings />;
       default:
-        return <Home />;
+        return <Home inventoryItems={inventoryItems} />;
         break;
     }
   };
