@@ -59,7 +59,9 @@ export default function Home() {
         </Card>
         
       </Box>
-      <Card sx={{ minWidth: "275px", width: 'auto',  }}>
+      <Box sx={{ width: '100%', display: 'flex', gap: '1rem', alignItems: 'flex-start'}}>
+
+      <Card sx={{ minWidth: "275px", width: 'auto', flex: '1 1 auto'  }}>
           <CardContent>
             <Typography
               sx={{ fontSize: "14px" }}
@@ -72,6 +74,20 @@ export default function Home() {
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
+        <Card sx={{ minWidth: "275px", width: 'auto', flex: '1 1 auto'  }}>
+          <CardContent>
+            <Typography
+              sx={{ fontSize: "14px" }}
+              gutterBottom
+              color="text.secondary"
+            >
+              Out of Stock Items
+            </Typography>
+            <Typography variant="p">- SilverWatch</Typography>
+          </CardContent>
+          <CardActionArea></CardActionArea>
+        </Card>
+        </Box>
     </Box>
   );
 }
