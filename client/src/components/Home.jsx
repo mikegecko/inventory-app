@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 
-export default function Home() {
+export default function Home(props) {
   /*
         Display the following:
         1. Total items
@@ -15,6 +15,19 @@ export default function Home() {
         3. Out of stock items
         4. Low stock items
     */
+
+    const totalInventoryValue = () => {
+        const items = props.inventoryItems;
+    }
+    const totalInventoryItems = () => {
+
+    }
+    const lowInventoryStock = () => {
+
+    }
+    const emptyInventoryStock = () => {
+
+    }
 
   return (
     <Box
@@ -70,7 +83,7 @@ export default function Home() {
             >
               Low Stock Items
             </Typography>
-            <Typography variant="p">- SilverWatch</Typography>
+            <Typography variant="p">- Silver Watch</Typography>
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
@@ -83,7 +96,7 @@ export default function Home() {
             >
               Out of Stock Items
             </Typography>
-            <Typography variant="p">- SilverWatch</Typography>
+            <Typography variant="p">- Hoodie</Typography>
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
