@@ -18,15 +18,24 @@ export default function Home(props) {
 
     const totalInventoryValue = () => {
         const items = props.inventoryItems;
+        let total = 0;
+        items.forEach(item => {
+            
+        });
     }
     const totalInventoryItems = () => {
-
+        const items = props.inventoryItems;
+        let total = 0;
+        items.forEach(item => {
+            total = total + parseInt(item.quantity);
+        });
+        return(total);
     }
     const lowInventoryStock = () => {
-
+        const items = props.inventoryItems;
     }
     const emptyInventoryStock = () => {
-
+        const items = props.inventoryItems;
     }
 
   return (
@@ -53,7 +62,7 @@ export default function Home(props) {
             >
               Total Items
             </Typography>
-            <Typography variant="h5">100</Typography>
+            <Typography variant="h5">{totalInventoryItems()}</Typography>
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
