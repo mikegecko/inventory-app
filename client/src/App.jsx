@@ -92,7 +92,7 @@ function App() {
   const pageSelect = () => {
     switch (page) {
       case "home":
-        return <Home />;
+        return <Home inventoryItems={inventoryItems} />;
       case "inventory":
         return (
           <InventoryDashboard
