@@ -6,7 +6,8 @@ export default function Settings() {
     /*
         Display the following:
         1. Account info
-        2. 
+        2. Light/dark mode?
+        3. 
 
     */
 

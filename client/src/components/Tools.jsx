@@ -5,7 +5,9 @@ export default function Tools() {
 
     /*
         Display the following:
-        1.
+        1. Low stock cuttoff
+        2. Delete All Items
+        3. Delete Items by category?
 
     */
 
