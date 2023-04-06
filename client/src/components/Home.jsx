@@ -20,8 +20,10 @@ export default function Home(props) {
         const items = props.inventoryItems;
         let total = 0;
         items.forEach(item => {
-            
+            total = total + (parseInt(item.quantity) * parseFloat(item.price));
         });
+        total = total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        return(total)
     }
     const totalInventoryItems = () => {
         const items = props.inventoryItems;
@@ -75,7 +77,7 @@ export default function Home(props) {
             >
               Total Value
             </Typography>
-            <Typography variant="h5">$1,000</Typography>
+            <Typography variant="h5">${totalInventoryValue()}</Typography>
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
