@@ -29,7 +29,7 @@ export default function InventoryDashboard(props){
         {field: 'title', headerName: 'Name', width: 160},
         {field: 'description', headerName: 'Description', width: 200},
         {field: 'category', headerName: 'Category', width: 160},
-        {field: 'price', headerName: 'Price', width: 70, type: 'number'},
+        {field: 'price', headerName: 'Price', width: 75, type: 'number'},
         {field: 'quantity', headerName: 'Qty', width:70, type: 'number'},
         {field: '_id', headerName: '_id', width: 210}
         
