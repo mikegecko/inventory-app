@@ -54,6 +54,7 @@ export default function Home(props) {
         return(outItems);
     }
 
+
   return (
     <Box
       sx={{
@@ -108,7 +109,11 @@ export default function Home(props) {
             >
               Low Stock Items
             </Typography>
-            <Typography variant="p">- Silver Watch</Typography>
+            <Typography variant="ul">{lowInventoryStock().map((item,index) => {
+                return(
+                    <li key={index}>{item.title} - {item.quantity}</li>
+                )
+            })}</Typography>
           </CardContent>
           <CardActionArea></CardActionArea>
         </Card>
