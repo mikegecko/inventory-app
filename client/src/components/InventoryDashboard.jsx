@@ -11,6 +11,12 @@ import EditItemForm from "./EditItemForm";
 
 export default function InventoryDashboard(props){
 
+    /*
+        TODO:
+        - ADD DETAIL PAGE DISPLAY FOR DOUBLE CLICK ROW
+    */
+
+
     const [selection, setSelection] = useState([]);
     const [selectedItem, setSelectedItem] = useState();
 
