@@ -19,13 +19,17 @@ const usersRouter = require('./routes/users');
 const app = express();
 
 // CORS 
-app.options('*', cors())
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  limit: '10mb'
+}));
 //Use react for views
 app.use(express.static(path.join(__dirname, "client", "dist")));
 //Express Middleware
 app.use(logger("dev"));
-app.use(express.json()); //Use json instead of html
+app.use(express.json({limit: '10mb'})); //Use json instead of html
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
