@@ -36,7 +36,7 @@ export default function InventoryDashboard(props){
     ]
 
     useEffect(() => {
-        console.log(selection);
+        //console.log(selection);
         if(selection !== null){
             setSelectedItem(props.inventoryItems[selection]);
         }
