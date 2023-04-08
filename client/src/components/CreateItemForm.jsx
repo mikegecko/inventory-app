@@ -62,7 +62,7 @@ export default function CreateItemForm(props) {
         setItem({ ...item, quantity: value });
         break;
       case "new-item-img":
-        
+        //setItem({ ...item, image: newImage });
       default:
         break;
     }
@@ -154,7 +154,7 @@ export default function CreateItemForm(props) {
             type="number"
           />
         </Box>
-        <Box sx={{display: 'flex', alignItems: 'center', gap: '2rem'}}>
+        <Box sx={{display: 'flex', alignItems: 'center', gap: '2rem', height: '80px'}}>
           <Button variant="contained" component='label'>
             Upload Image
             <input id="new-item-img" onChange={handleImageChange} hidden accept="image/*" multiple={false} type="file" />

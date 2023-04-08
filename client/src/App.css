@@ -21,9 +21,5 @@
   height: 44px;
 }
 .upload-img{
-  height: 50px;
-  width: 50px;
-  aspect-ratio: 1;
-  max-width: 150px;
-  max-height: 150px;
+  height: 80px;
 }
