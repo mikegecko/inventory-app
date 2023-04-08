@@ -8,8 +8,10 @@ import {
   DialogTitle,
   InputAdornment,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import { Buffer } from "buffer";
 
 export default function EditItemForm(props) {
   const itemStruct = {
@@ -20,12 +22,25 @@ export default function EditItemForm(props) {
     price: null,
     added: "",
     updated: "",
-    image: "",
+    image: null,
   };
 
   const [item, setItem] = useState(itemStruct);
   const [errors, setErrors] = useState({});
 
+  const [itemImage, setItemImage] = useState(null);
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsArrayBuffer(file);
+    reader.onloadend = () => {
+        const buffer = Buffer.from(reader.result);
+        setItemImage(buffer);
+        setItem({...item, image: buffer});
+    }
+    //handleItemUpdate(e);
+  }
   const handleItemUpdate = (e) => {
     const value = e.target.value;
     switch (e.target.id) {
@@ -77,10 +92,19 @@ export default function EditItemForm(props) {
 
   useEffect(() => {
     setItem({...props.selectedItem});
+    if(props.selectedItem !== undefined && props.selectedItem.image.data !== undefined){
+      setItemImage(props.selectedItem.image);
+    }
+    else{
+      setItemImage(null);
+    }
   }, [props.selectedItem])
   useEffect(() => {
     //console.log(item);
   },[item])
+  useEffect(() => {
+    console.log(itemImage);
+  }, [itemImage])
   const dialogActive = () => {
     return (
       <DialogContent
@@ -151,6 +175,14 @@ export default function EditItemForm(props) {
                 item.quantity ? item.quantity: ""
               }
           />
+        </Box>
+        <Box sx={{display: 'flex', alignItems: 'center', gap: '2rem', height: '80px'}}>
+          <Button variant="contained" component='label'>
+            Upload New Image
+            <input id="item-img" onChange={handleImageChange} hidden accept="image/*" multiple={false} type="file" />
+          </Button>
+          <Typography variant="p"></Typography>
+          {!itemImage ? 'No Image Uploaded' : <img className="upload-img" src={`data:${itemImage.contentType};base64,${Buffer.from(itemImage.data).toString('base64')}`} alt="uploaded image" />} 
         </Box>
       </DialogContent>
     );
