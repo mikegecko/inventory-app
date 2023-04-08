@@ -60,7 +60,7 @@ export default function InventoryDashboard(props){
                     </ButtonGroup>
                 </Paper>
             </Box>
-            <DataGrid rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
+            <DataGrid onRowDoubleClick={(e) => console.log('Load detail page for', e)} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
         </Box>
         </>
     )
