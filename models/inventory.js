@@ -9,7 +9,7 @@ const InventorySchema = new Schema({
     price: {type: Number, required: false},
     added: {type: Date, required: true},
     updated: {type: Date, required: false},
-    image: {data: Buffer, contentType: String}
+    image: {data: Buffer, contentType: Array}
 }, {collection: 'items'})
 // Virtual URL
 // InventorySchema.virtual('url').get(function() {
