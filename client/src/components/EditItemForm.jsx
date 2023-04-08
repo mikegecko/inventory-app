@@ -29,6 +29,7 @@ export default function EditItemForm(props) {
   const [errors, setErrors] = useState({});
 
   const [itemImage, setItemImage] = useState(null);
+  const [imageSrc, setImageSrc] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -38,6 +39,8 @@ export default function EditItemForm(props) {
         const buffer = Buffer.from(reader.result);
         setItemImage(buffer);
         setItem({...item, image: buffer});
+        const uploadUri = URL.createObjectURL( new Blob([buffer.buffer], {type: 'image/png'}));
+        setImageSrc(uploadUri);
     }
     //handleItemUpdate(e);
   }
@@ -94,17 +97,17 @@ export default function EditItemForm(props) {
     setItem({...props.selectedItem});
     if(props.selectedItem !== undefined && props.selectedItem.image.data !== undefined){
       setItemImage(props.selectedItem.image);
+      const dataUri = `data:${props.selectedItem.image.contentType};base64,${Buffer.from(props.selectedItem.image.data).toString('base64')}`;
+      setImageSrc(dataUri);
     }
     else{
       setItemImage(null);
+      setImageSrc(null)
     }
   }, [props.selectedItem])
   useEffect(() => {
     //console.log(item);
   },[item])
-  useEffect(() => {
-    console.log(itemImage);
-  }, [itemImage])
   const dialogActive = () => {
     return (
       <DialogContent
@@ -182,7 +185,7 @@ export default function EditItemForm(props) {
             <input id="item-img" onChange={handleImageChange} hidden accept="image/*" multiple={false} type="file" />
           </Button>
           <Typography variant="p"></Typography>
-          {!itemImage ? 'No Image Uploaded' : <img className="upload-img" src={`data:${itemImage.contentType};base64,${Buffer.from(itemImage.data).toString('base64')}`} alt="uploaded image" />} 
+          {!itemImage ? 'No Image Uploaded' : <img className="upload-img" src={imageSrc} alt="uploaded image" /> } 
         </Box>
       </DialogContent>
     );
