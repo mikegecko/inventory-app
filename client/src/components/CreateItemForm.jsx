@@ -23,7 +23,7 @@ export default function CreateItemForm(props) {
     price: null,
     added: "",
     updated: "",
-    image: "",
+    image: null,
   };
 
   const [item, setItem] = useState(itemStruct);
@@ -37,13 +37,14 @@ export default function CreateItemForm(props) {
     reader.onloadend = () => {
         const buffer = Buffer.from(reader.result);
         setNewImage(buffer);
+        setItem({...item, image: buffer});
     }
-    handleItemUpdate(e)
+    //handleItemUpdate(e);
   }
 
   const handleItemUpdate = (e) => {
     const value = e.target.value;
-    console.log(e.target.id);
+    //console.log(e.target.id);
     switch (e.target.id) {
       case "new-item-name":
         setItem({ ...item, title: value });
@@ -60,8 +61,8 @@ export default function CreateItemForm(props) {
       case "new-item-qty":
         setItem({ ...item, quantity: value });
         break;
-      case 'new-item-img':
-        setItem({...item, image: newImage})
+      case "new-item-img":
+        
       default:
         break;
     }
@@ -94,6 +95,9 @@ export default function CreateItemForm(props) {
   useEffect(() => {
     //console.log(item);
   }, [item]);
+  useEffect(() => {
+    //console.log(newImage);
+  }, [newImage])
   return (
     <Dialog open={props.open} onClose={props.handleClose}>
       <DialogTitle>Add new item</DialogTitle>
@@ -156,7 +160,7 @@ export default function CreateItemForm(props) {
             <input id="new-item-img" onChange={handleImageChange} hidden accept="image/*" multiple={false} type="file" />
           </Button>
           <Typography variant="p"></Typography>
-          {!newImage ? '' : <img className="upload-img" src={URL.createObjectURL( new Blob([newImage.buffer], {type: 'image/png'}))} alt="uploaded image" />}
+          {!newImage ? 'No Image Uploaded' : <img className="upload-img" src={URL.createObjectURL( new Blob([newImage.buffer], {type: 'image/png'}))} alt="uploaded image" />}
         </Box>
       </DialogContent>
       <DialogActions>
