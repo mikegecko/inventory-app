@@ -3,7 +3,7 @@ import "./App.css";
 import axios from "axios";
 import Sidebar from "./components/Sidebar";
 import { Box, ThemeProvider } from "@mui/material";
-import { theme } from "./components/Themes";
+import { darkTheme, lightTheme } from "./components/Themes";
 import Header from "./components/Header";
 import InventoryDashboard from "./components/InventoryDashboard";
 import Home from "./components/Home";
@@ -21,6 +21,17 @@ function App() {
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
   const breakpoint = 768;
+
+
+  const themeControl = () => {
+    if(colorMode === 'dark'){
+      return(darkTheme);
+    }
+    if(colorMode === 'light'){
+      return(lightTheme);
+    }
+  }
+
   const handleUpdateItemSubmit = async (updatedItem) => {
     try {
       const response = await axios.put(`/api/inventory/${updatedItem._id}`, {
@@ -169,7 +180,7 @@ function App() {
   if (mobileView) {
     return (
       <div className="App">
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themeControl()}>
           <Box
             sx={{
               display: "flex",
@@ -178,7 +189,8 @@ function App() {
               height: "100%",
               width: "100%",
               flexDirection: "row",
-              overflow: 'hidden'
+              overflow: 'hidden',
+              backgroundColor: 'background.default',
             }}
           >
             <Sidebar
@@ -205,7 +217,7 @@ function App() {
   */
     return (
       <div className="App">
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={themeControl()}>
           <Box
             sx={{
               display: "flex",
@@ -214,6 +226,7 @@ function App() {
               height: "100%",
               width: "100%",
               flexDirection: "row",
+              backgroundColor: 'background.default',
             }}
           >
             <Sidebar
