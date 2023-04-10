@@ -50,6 +50,23 @@ export default function Header(props) {
       },
     },
   }));
+  const pageToString = () => {
+    switch (props.page) {
+      case 'home':
+        return("Home");
+      case 'inventory':
+      return("Inventory");
+      case 'detail':
+        return('Inventory');
+      case 'settings':
+        return('Settings');
+      case 'tools':
+        return('Tools');
+      default:
+        return('Home');
+    }
+  }
+
   if (props.mobileView) {
     return (
       <Box sx={{ flexGrow: 1 }}>
@@ -58,8 +75,8 @@ export default function Header(props) {
             <Typography
               variant="h4"
               component="div"
-              sx={{ flexGrow: 1 }}
-            ></Typography>
+              sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+            >{pageToString()}</Typography>
           </Toolbar>
         </AppBar>
       </Box>
