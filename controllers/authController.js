@@ -32,10 +32,24 @@ exports.update_password = (req,res,next) => {
 }
 
 exports.requireAuth = (req,res,next) => {
-    if(req.session && req.session.authenticated){
-        //User is authenticated
-        return(next());
-    } else{
+    const authHeader = req.headers.authorization;
+    if(!authHeader){
+        return(res.status(401).json({success: false, message: 'Unauthorized'}));
+    }
+    //Extract the token
+    const token = authHeader.split(' ')[1];
+
+    try{
+        //Verify the token
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+        if(decodedToken.isAdmin){
+            //User is admin, they are authorized
+            return next();
+        }else{
+            return(res.status(401).json({success: false, message: 'Unauthorized'}));
+        }
+    } catch(error){
+        // Token is invalid or has expired, or request is unauthorized
         return(res.status(401).json({success: false, message: 'Unauthorized'}));
     }
 }
