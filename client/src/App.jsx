@@ -23,6 +23,16 @@ function App() {
   const breakpoint = 768;
 
 
+  
+  const handleLogin = async(username, password) => {
+    try {
+      const response = await axios.post('/api/auth/login', {username, password});
+      localStorage.setItem('token', response.data.token);
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   const themeControl = () => {
     if(colorMode === 'dark'){
       return(darkTheme);
@@ -45,9 +55,11 @@ function App() {
   };
 
   const handleDeleteItemSubmit = async (delItem) => {
+    const token = localStorage.getItem('token');
+    const headers = { Authorization: `Bearer ${token}`};
     try {
       const response = await axios.delete(`/api/inventory/${delItem._id}`, {
-        ...delItem,
+        ...delItem, headers
       });
       //console.log("Deleted item", response.data);
       retrieveItems();
@@ -123,7 +135,7 @@ function App() {
       case "tools":
         return <Tools mobileView={mobileView} />;
       case "settings":
-        return <Settings mobileView={mobileView} />;
+        return <Settings handleLogin={handleLogin} mobileView={mobileView} />;
       default:
         return <Home inventoryItems={inventoryItems} mobileView={mobileView}/>;
         break;
