@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 3000;
 const indexRouter = require('./routes/index');
 const inventoryRouter = require('./routes/inventory');
 const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(cookieParser());
 
 //Routes
 app.use('/api/inventory', inventoryRouter);
+app.use('/api/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
