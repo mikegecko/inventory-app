@@ -24,52 +24,103 @@ export default function ItemDetail(props) {
     }
   }, []);
 
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        margin: "1rem",
-        gap: "1rem",
-        width: "calc(100% - 40px)",
-        height: "calc(100% - 2rem - 64px)",
-      }}
-    >
-      <Paper elevation={2}>
-        <Box sx={{display: 'flex', flexDirection: 'row', gap: '2rem'}}>
-        <Box sx={{ display: "flex", ml: '1rem' }}>
-          <IconButton onClick={props.handleGoBack} aria-label="back">
-            <ArrowBackIcon />
-          </IconButton>
-        </Box>
-        <Typography variant="h4" >
-          {item ? item.title : "No Item Selected"}
-        </Typography>
-        </Box>
-        <Divider />
+  if(props.mobileView){
+    return (
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
-            gap: "1rem",
-            padding: "2rem",
+            flexDirection: "column",
+            margin: "1rem",
+            gap: ".5rem",
+            width: "100%",
+            height: "calc(100% - 2rem - 64px)",
           }}
         >
-          <img className="img-detail" src={itemImageSrc} />
-          <Box>{item ? item.description : "No description."}</Box>
+          <Paper elevation={2} sx={{width: '100%'}} >
+            <Box sx={{display: 'flex', flexDirection: 'row', gap: '.5rem'}}>
+            <Box sx={{ display: "flex", }}>
+              <IconButton onClick={props.handleGoBack} aria-label="back">
+                <ArrowBackIcon />
+              </IconButton>
+            </Box>
+            <Typography variant="h4" >
+              {item ? item.title : "No Item Selected"}
+            </Typography>
+            </Box>
+            <Divider />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                padding: "2rem",
+              }}
+            >
+              <img className="img-detail" src={itemImageSrc} />
+              <Box>{item ? item.description : "No description."}</Box>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "1rem",
+                padding: "2rem",
+              }}
+            >
+              <Box>Price: ${item ? item.price : ""}</Box>
+              <Box>Quantity: {item ? item.quantity : ""}</Box>
+            </Box>
+          </Paper>
         </Box>
+      );
+  }else{
+    return (
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: "column",
+            margin: "1rem",
             gap: "1rem",
-            padding: "2rem",
+            width: "calc(100% - 40px)",
+            height: "calc(100% - 2rem - 64px)",
           }}
         >
-          <Box>Price: ${item ? item.price : ""}</Box>
-          <Box>Quantity: {item ? item.quantity : ""}</Box>
+          <Paper elevation={2}>
+            <Box sx={{display: 'flex', flexDirection: 'row', gap: '2rem'}}>
+            <Box sx={{ display: "flex", ml: '1rem' }}>
+              <IconButton onClick={props.handleGoBack} aria-label="back">
+                <ArrowBackIcon />
+              </IconButton>
+            </Box>
+            <Typography variant="h4" >
+              {item ? item.title : "No Item Selected"}
+            </Typography>
+            </Box>
+            <Divider />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "1rem",
+                padding: "2rem",
+              }}
+            >
+              <img className="img-detail" src={itemImageSrc} />
+              <Box>{item ? item.description : "No description."}</Box>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: "1rem",
+                padding: "2rem",
+              }}
+            >
+              <Box>Price: ${item ? item.price : ""}</Box>
+              <Box>Quantity: {item ? item.quantity : ""}</Box>
+            </Box>
+          </Paper>
         </Box>
-      </Paper>
-    </Box>
-  );
+      );
+  }
 }
