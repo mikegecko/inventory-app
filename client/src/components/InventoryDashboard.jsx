@@ -78,7 +78,7 @@ export default function InventoryDashboard(props){
             <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} handleNewItemSubmit={props.handleNewItemSubmit} />
             <DeleteItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openDelete} selectedItem={selectedItem} handleDeleteItemSubmit={props.handleDeleteItemSubmit} />
             <EditItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openEdit} selectedItem={selectedItem} handleUpdateItemSubmit={props.handleUpdateItemSubmit}/>
-            <Box sx={{width: 'calc(100% - 64px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 60px )', margin: ' 0px', overflow: 'auto'}}>
+            <Box sx={{width: 'calc(100% - 1rem)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 60px )', margin: ' 0px', overflow: 'auto'}}>
                 <Box sx={{display: !hideControls ? 'flex' : 'none', justifyContent: 'center', mb: '10px', mt: '10px'}}>
                     <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
                         <ButtonGroup color="primary" sx={{ width: 'auto'}}>
