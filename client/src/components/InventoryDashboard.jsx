@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import EditItemForm from "./EditItemForm";
 import ItemDetail from "./ItemDetail";
 
+
 export default function InventoryDashboard(props){
 
     /*
@@ -28,10 +29,14 @@ export default function InventoryDashboard(props){
             case 'grid':
                 return <DataGrid onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
             case 'detail':
-                return <ItemDetail selectedItem={selectedItem} />
+                return <ItemDetail handleGoBack={handleGoBack} selectedItem={selectedItem} />
             default:
                 break;
         }
+    }
+    const handleGoBack = (e) => {
+        setHideControls(false);
+        setSubPage('grid');
     }
 
     const handleItemDoubleClick = (e) => {

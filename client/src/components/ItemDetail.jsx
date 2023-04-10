@@ -1,6 +1,7 @@
-import { Box, Divider, Paper, Typography } from "@mui/material";
+import { Box, Divider, IconButton, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Buffer } from "buffer";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 export default function ItemDetail(props) {
   const [item, setItem] = useState(null);
@@ -35,23 +36,38 @@ export default function ItemDetail(props) {
       }}
     >
       <Paper elevation={2}>
-        <Typography variant="h4" sx={{}}>
+        <Box sx={{display: 'flex', flexDirection: 'row', gap: '2rem'}}>
+        <Box sx={{ display: "flex", ml: '1rem' }}>
+          <IconButton onClick={props.handleGoBack} aria-label="back">
+            <ArrowBackIcon />
+          </IconButton>
+        </Box>
+        <Typography variant="h4" >
           {item ? item.title : "No Item Selected"}
         </Typography>
-        <Divider/>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem", padding: '2rem' }}>
-          <img className="img-detail" src={itemImageSrc} />
-          <Box>
-            {item ? item.description : 'No description.'}
-          </Box>
         </Box>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem", padding: '2rem' }}>
-            <Box>
-               Price: ${item? item.price : ''}
-            </Box>
-            <Box>
-                Quantity: {item? item.quantity: ''}
-            </Box>
+        <Divider />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "1rem",
+            padding: "2rem",
+          }}
+        >
+          <img className="img-detail" src={itemImageSrc} />
+          <Box>{item ? item.description : "No description."}</Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "1rem",
+            padding: "2rem",
+          }}
+        >
+          <Box>Price: ${item ? item.price : ""}</Box>
+          <Box>Quantity: {item ? item.quantity : ""}</Box>
         </Box>
       </Paper>
     </Box>
