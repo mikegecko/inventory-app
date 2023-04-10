@@ -31,7 +31,7 @@ export default function Sidebar(props) {
           square
         >
           <Box sx={{ width: "100%" }}>
-            <Box sx={{ height: "64px", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <Box sx={{ height: "56px", display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <img className="logo" src={logoUrl} alt="Inventory Manager Logo" />
             </Box>
             <Divider />
