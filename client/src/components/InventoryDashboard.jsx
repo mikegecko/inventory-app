@@ -36,7 +36,7 @@ export default function InventoryDashboard(props){
     }
 
     const handleItemDoubleClick = (e) => {
-        console.log(e.id);
+        //console.log(e.id);
         setHideControls(true);
         setSubPage('detail');
     }
@@ -69,7 +69,7 @@ export default function InventoryDashboard(props){
         }
     }, [selection])
     useEffect(() => {
-        console.log(selectedItem)
+        //console.log(selectedItem)
     }, [selectedItem])
     
     const gridWidthOverride = (overrideVal) => {

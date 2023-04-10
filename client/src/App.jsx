@@ -37,7 +37,7 @@ function App() {
       const response = await axios.put(`/api/inventory/${updatedItem._id}`, {
         ...updatedItem,
       });
-      console.log("Updated item", response.data);
+      //console.log("Updated item", response.data);
       retrieveItems();
     } catch (error) {
       console.error(error);
@@ -49,7 +49,7 @@ function App() {
       const response = await axios.delete(`/api/inventory/${delItem._id}`, {
         ...delItem,
       });
-      console.log("Deleted item", response.data);
+      //console.log("Deleted item", response.data);
       retrieveItems();
     } catch (error) {
       console.error(error);
@@ -60,7 +60,7 @@ function App() {
       const response = await axios.post("/api/inventory", {
         ...newItem,
       });
-      console.log("Created new item", response.data);
+      //console.log("Created new item", response.data);
       retrieveItems();
     } catch (error) {
       console.error(error);
@@ -159,10 +159,10 @@ function App() {
     };
   }, []);
   useEffect(() => {
-    console.log(inventoryItems);
+    //console.log(inventoryItems);
   }, [inventoryItems]);
   useEffect(() => {
-    console.log(colorMode);
+    //console.log(colorMode);
   }, [colorMode]);
   //Responsive views
   useEffect(() => {

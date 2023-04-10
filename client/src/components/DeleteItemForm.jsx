@@ -17,7 +17,7 @@ export default function DeleteItemForm(props) {
         props.handleDeleteItemSubmit(props.selectedItem);
     }
     else{
-        console.log("No item selected");
+        //console.log("No item selected");
     }
     props.handleClose();
   };
