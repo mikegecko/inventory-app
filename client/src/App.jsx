@@ -110,9 +110,9 @@ function App() {
           />
         );
       case "tools":
-        return <Tools />;
+        return <Tools mobileView={mobileView} />;
       case "settings":
-        return <Settings />;
+        return <Settings mobileView={mobileView} />;
       default:
         return <Home inventoryItems={inventoryItems} mobileView={mobileView}/>;
         break;
@@ -178,6 +178,7 @@ function App() {
               height: "100%",
               width: "100%",
               flexDirection: "row",
+              overflow: 'hidden'
             }}
           >
             <Sidebar
