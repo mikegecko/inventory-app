@@ -8,6 +8,7 @@ import CreateItemForm from "./CreateItemForm";
 import DeleteItemForm from "./DeleteItemForm";
 import { useEffect, useState } from "react";
 import EditItemForm from "./EditItemForm";
+import ItemDetail from "./ItemDetail";
 
 export default function InventoryDashboard(props){
 
@@ -19,6 +20,23 @@ export default function InventoryDashboard(props){
 
     const [selection, setSelection] = useState([]);
     const [selectedItem, setSelectedItem] = useState();
+    const [subPage, setSubPage] = useState('grid');
+
+    const subPageSelect = () => {
+        switch (subPage) {
+            case 'grid':
+                return <DataGrid onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
+            case 'detail':
+                return <ItemDetail />
+            default:
+                break;
+        }
+    }
+
+    const handleItemDoubleClick = (e) => {
+        console.log(e.id);
+        setSubPage('detail');
+    }
 
     const modifiedInventoryItems = (arr) => {
         const newItems = [...arr] || [...props.inventoryItems];
@@ -66,7 +84,7 @@ export default function InventoryDashboard(props){
                     </ButtonGroup>
                 </Paper>
             </Box>
-            <DataGrid onRowDoubleClick={(e) => console.log('Load detail page for', e)} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
+            {subPageSelect()}
         </Box>
         </>
     )
