@@ -105,8 +105,9 @@ export default function Settings(props) {
           variant="text"
           sx={{ margin: "1rem 0rem 1rem 0rem" }}
           onClick={handleRemoveAuth}
+          disabled={!tempToken}
         >
-          Remove Auth Token
+          Logout
         </Button>
         </Box>
         <Box sx={{mb:2, display: 'flex', flexGrow: 1, height: '4rem', width: '100%', justifyContent: 'center'}}>
