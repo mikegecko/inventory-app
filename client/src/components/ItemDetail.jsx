@@ -1,4 +1,4 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Divider, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Buffer } from "buffer";
 
@@ -26,19 +26,32 @@ export default function ItemDetail(props) {
   return (
     <Box
       sx={{
+        display: "flex",
+        flexDirection: "column",
+        margin: "1rem",
+        gap: "1rem",
         width: "calc(100% - 40px)",
-        maxWidth: "100%",
-        maxHeight: "100vh",
-        height: "calc(100% - 157px)",
-        margin: "20px 20px 20px 20px",
+        height: "calc(100% - 2rem - 64px)",
       }}
     >
       <Paper elevation={2}>
-        <Typography variant="h4">
+        <Typography variant="h4" sx={{}}>
           {item ? item.title : "No Item Selected"}
         </Typography>
-        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem" }}>
-          <img src={itemImageSrc} />
+        <Divider/>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem", padding: '2rem' }}>
+          <img className="img-detail" src={itemImageSrc} />
+          <Box>
+            {item ? item.description : 'No description.'}
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", flexDirection: "row", gap: "1rem", padding: '2rem' }}>
+            <Box>
+               Price: ${item? item.price : ''}
+            </Box>
+            <Box>
+                Quantity: {item? item.quantity: ''}
+            </Box>
         </Box>
       </Paper>
     </Box>
