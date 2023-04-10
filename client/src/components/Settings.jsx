@@ -16,27 +16,30 @@ export default function Settings(props) {
         3. Login
         4. Token info?
     */
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
+  const handleRemoveAuth = (e) => {
+    localStorage.removeItem("token");
+  };
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value)
+    setUsername(e.target.value);
   };
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value)
+    setPassword(e.target.value);
   };
 
   const handleSubmit = (e) => {
-    console.log(username,password);
-    props.handleLogin(username,password);
+    console.log(username, password);
+    props.handleLogin(username, password);
     clearLoginInfo();
     return;
-  }
+  };
 
   const clearLoginInfo = (e) => {
-    setUsername('');
-    setPassword('');
-  }
+    setUsername("");
+    setPassword("");
+  };
 
   return (
     <Box
@@ -81,8 +84,19 @@ export default function Settings(props) {
             <TextField onChange={handlePasswordChange} />
           </Box>
         </Box>
-        <Button variant="contained" sx={{ margin: "1rem 0rem 1rem 0rem" }} onClick={handleSubmit}>
+        <Button
+          variant="contained"
+          sx={{ margin: "1rem 0rem 1rem 0rem" }}
+          onClick={handleSubmit}
+        >
           Login
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ margin: "1rem 0rem 1rem 0rem" }}
+          onClick={handleRemoveAuth}
+        >
+          Remove Auth Token
         </Button>
       </Paper>
     </Box>
