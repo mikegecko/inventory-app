@@ -13,10 +13,6 @@ import ItemDetail from "./ItemDetail";
 
 export default function InventoryDashboard(props){
 
-    /*
-        TODO:
-        - ADD DETAIL PAGE DISPLAY FOR DOUBLE CLICK ROW
-    */
 
 
     const [selection, setSelection] = useState([]);
@@ -27,9 +23,9 @@ export default function InventoryDashboard(props){
     const subPageSelect = () => {
         switch (subPage) {
             case 'grid':
-                return <DataGrid onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
+                return <DataGrid sx={{height: '100%'}} onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
             case 'detail':
-                return <ItemDetail handleGoBack={handleGoBack} selectedItem={selectedItem} />
+                return <ItemDetail handleGoBack={handleGoBack} selectedItem={selectedItem} mobileView={props.mobileView} />
             default:
                 break;
         }
@@ -76,23 +72,45 @@ export default function InventoryDashboard(props){
         console.log(selectedItem)
     }, [selectedItem])
     
-    return(
-        <>
-        <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} handleNewItemSubmit={props.handleNewItemSubmit} />
-        <DeleteItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openDelete} selectedItem={selectedItem} handleDeleteItemSubmit={props.handleDeleteItemSubmit} />
-        <EditItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openEdit} selectedItem={selectedItem} handleUpdateItemSubmit={props.handleUpdateItemSubmit}/>
-        <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 157px)', margin: ' 0 20px 20px 20px'}}>
-            <Box sx={{display: !hideControls ? 'flex' : 'none', justifyContent: 'center', mb: '10px', mt: '10px'}}>
-                <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
-                    <ButtonGroup color="primary" sx={{ width: 'auto'}}>
-                        <Button id="add" onClick={props.handleClickOpenModal}><AddIcon sx={{pointerEvents: 'none'}} /></Button>
-                        <Button id="edit"onClick={props.handleClickOpenModal}><EditIcon sx={{pointerEvents: 'none'}} /></Button>
-                        <Button id="del" onClick={props.handleClickOpenModal}><DeleteIcon sx={{pointerEvents: 'none'}} /></Button>
-                    </ButtonGroup>
-                </Paper>
+    if(props.mobileView){
+        return(
+            <>
+            <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} handleNewItemSubmit={props.handleNewItemSubmit} />
+            <DeleteItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openDelete} selectedItem={selectedItem} handleDeleteItemSubmit={props.handleDeleteItemSubmit} />
+            <EditItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openEdit} selectedItem={selectedItem} handleUpdateItemSubmit={props.handleUpdateItemSubmit}/>
+            <Box sx={{width: 'calc(100% - 64px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 60px )', margin: ' 0px', overflow: 'auto'}}>
+                <Box sx={{display: !hideControls ? 'flex' : 'none', justifyContent: 'center', mb: '10px', mt: '10px'}}>
+                    <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
+                        <ButtonGroup color="primary" sx={{ width: 'auto'}}>
+                            <Button id="add" onClick={props.handleClickOpenModal}><AddIcon sx={{pointerEvents: 'none'}} /></Button>
+                            <Button id="edit"onClick={props.handleClickOpenModal}><EditIcon sx={{pointerEvents: 'none'}} /></Button>
+                            <Button id="del" onClick={props.handleClickOpenModal}><DeleteIcon sx={{pointerEvents: 'none'}} /></Button>
+                        </ButtonGroup>
+                    </Paper>
+                </Box>
+                {subPageSelect()}
             </Box>
-            {subPageSelect()}
-        </Box>
-        </>
-    )
+            </>
+        )
+    }else{
+        return(
+            <>
+            <CreateItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openNew} handleNewItemSubmit={props.handleNewItemSubmit} />
+            <DeleteItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openDelete} selectedItem={selectedItem} handleDeleteItemSubmit={props.handleDeleteItemSubmit} />
+            <EditItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openEdit} selectedItem={selectedItem} handleUpdateItemSubmit={props.handleUpdateItemSubmit}/>
+            <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 157px)', margin: ' 0 20px 20px 20px'}}>
+                <Box sx={{display: !hideControls ? 'flex' : 'none', justifyContent: 'center', mb: '10px', mt: '10px'}}>
+                    <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
+                        <ButtonGroup color="primary" sx={{ width: 'auto'}}>
+                            <Button id="add" onClick={props.handleClickOpenModal}><AddIcon sx={{pointerEvents: 'none'}} /></Button>
+                            <Button id="edit"onClick={props.handleClickOpenModal}><EditIcon sx={{pointerEvents: 'none'}} /></Button>
+                            <Button id="del" onClick={props.handleClickOpenModal}><DeleteIcon sx={{pointerEvents: 'none'}} /></Button>
+                        </ButtonGroup>
+                    </Paper>
+                </Box>
+                {subPageSelect()}
+            </Box>
+            </>
+        )
+    }
 }
