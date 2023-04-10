@@ -22,11 +22,8 @@ export default function Home(props) {
   };
   const totalInventoryItems = () => {
     const items = props.inventoryItems;
-    let total = 0;
-    items.forEach((item) => {
-      total = total + parseInt(item.quantity);
-    });
-    return total;
+    const total = items.reduce((accumulator, currentItem) => accumulator + currentItem.quantity, 0);
+    return total; 
   };
   const lowInventoryStock = () => {
     const items = props.inventoryItems;
