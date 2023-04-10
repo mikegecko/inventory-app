@@ -24,5 +24,7 @@
   height: 80px;
 }
 .img-detail{
-  height: 150px
+  height: 150px;
+  aspect-ratio: 1;
+  object-fit: contain;
 }
