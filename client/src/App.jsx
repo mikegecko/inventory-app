@@ -15,45 +15,46 @@ function App() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [colorMode, setColorMode] = useState("dark"); // Light/Dark mode
   const [page, setPage] = useState("home"); //Page control for pageSelect
+  const [mobileView, setMobileView] = useState(false);
   /* Modal Controls */
   const [openNew, setOpenNew] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-
-  const handleUpdateItemSubmit = async(updatedItem) => {
+  const breakpoint = 768;
+  const handleUpdateItemSubmit = async (updatedItem) => {
     try {
-      const response = await axios.put(`/api/inventory/${updatedItem._id}`,{
-        ...updatedItem
+      const response = await axios.put(`/api/inventory/${updatedItem._id}`, {
+        ...updatedItem,
       });
-      console.log('Updated item', response.data);
+      console.log("Updated item", response.data);
       retrieveItems();
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
-  const handleDeleteItemSubmit = async(delItem) => {
-    try{
+  const handleDeleteItemSubmit = async (delItem) => {
+    try {
       const response = await axios.delete(`/api/inventory/${delItem._id}`, {
-        ...delItem
+        ...delItem,
       });
-      console.log('Deleted item', response.data);
+      console.log("Deleted item", response.data);
       retrieveItems();
-    }catch(error){
+    } catch (error) {
       console.error(error);
     }
-  }
-  const handleNewItemSubmit = async(newItem) => {
-    try{
-      const response = await axios.post('/api/inventory', {
-        ...newItem
+  };
+  const handleNewItemSubmit = async (newItem) => {
+    try {
+      const response = await axios.post("/api/inventory", {
+        ...newItem,
       });
-      console.log('Created new item', response.data);
+      console.log("Created new item", response.data);
       retrieveItems();
-    }catch(error){
-      console.error(error)
+    } catch (error) {
+      console.error(error);
     }
-  }
+  };
 
   const handleClickOpenModal = (event) => {
     switch (event.target.id) {
@@ -79,12 +80,12 @@ function App() {
     setPage(newpage);
   };
   const handleModeChange = (event, newMode) => {
-    if(colorMode === 'dark'){
-      setColorMode('light');
+    if (colorMode === "dark") {
+      setColorMode("light");
       return;
     }
-    if(colorMode === 'light'){
-      setColorMode('dark')
+    if (colorMode === "light") {
+      setColorMode("dark");
       return;
     }
   };
@@ -92,7 +93,7 @@ function App() {
   const pageSelect = () => {
     switch (page) {
       case "home":
-        return <Home inventoryItems={inventoryItems} />;
+        return <Home inventoryItems={inventoryItems} mobileView={mobileView}/>;
       case "inventory":
         return (
           <InventoryDashboard
@@ -105,6 +106,7 @@ function App() {
             handleNewItemSubmit={handleNewItemSubmit}
             handleDeleteItemSubmit={handleDeleteItemSubmit}
             handleUpdateItemSubmit={handleUpdateItemSubmit}
+            mobileView={mobileView}
           />
         );
       case "tools":
@@ -112,27 +114,32 @@ function App() {
       case "settings":
         return <Settings />;
       default:
-        return <Home inventoryItems={inventoryItems} />;
+        return <Home inventoryItems={inventoryItems} mobileView={mobileView}/>;
         break;
     }
   };
 
-  const retrieveItems = async() => {
+  const retrieveItems = async () => {
     axios
-    .get("/api/inventory")
-    .then((res) => {
-      setInventoryItems(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  }
+      .get("/api/inventory")
+      .then((res) => {
+        setInventoryItems(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
     window.addEventListener("resize", handleResize);
+    if(windowWidth > breakpoint){
+      setMobileView(false);
+    } else{
+      setMobileView(true);
+    }
     //Api endpoint retrieve items
     retrieveItems();
 
@@ -145,48 +152,84 @@ function App() {
   }, [inventoryItems]);
   useEffect(() => {
     console.log(colorMode);
-  }, [colorMode])
+  }, [colorMode]);
+  //Responsive views
+  useEffect(() => {
+    if(windowWidth > breakpoint){
+      setMobileView(false);
+    } else{
+      setMobileView(true);
+    }
+  },[windowWidth])
   /*
   -----------
   MOBILE VIEW
   -----------
   */
-  if (windowWidth < 768) {
-    return <></>;
-  }
+  if (mobileView) {
+    return (
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              height: "100%",
+              width: "100%",
+              flexDirection: "row",
+            }}
+          >
+            <Sidebar
+              colorMode={colorMode}
+              handleModeChange={handleModeChange}
+              page={page}
+              handlePageChange={handlePageChange}
+              mobileView={mobileView}
+            />
+            <Box sx={{ width: "100%", height: "100%" }}>
+              <Header page={page} mobileView={mobileView} />
+              {pageSelect()}
+            </Box>
+          </Box>
+        </ThemeProvider>
+      </div>
+    );
+  } else {
 
   /*
   -----------
   DESKTOP VIEW
   -----------
   */
-  return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "flex-start",
-            height: "100%",
-            width: "100%",
-            flexDirection: "row",
-          }}
-        >
-          <Sidebar
-            colorMode={colorMode}
-            handleModeChange={handleModeChange}
-            page={page}
-            handlePageChange={handlePageChange}
-          />
-          <Box sx={{ width: "100%", height: "100%" }}>
-            <Header page={page} />
-            {pageSelect()}
+    return (
+      <div className="App">
+        <ThemeProvider theme={theme}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              height: "100%",
+              width: "100%",
+              flexDirection: "row",
+            }}
+          >
+            <Sidebar
+              colorMode={colorMode}
+              handleModeChange={handleModeChange}
+              page={page}
+              handlePageChange={handlePageChange}
+              mobileView={mobileView}
+            />
+            <Box sx={{ width: "100%", height: "100%" }}>
+              <Header page={page} mobileView={mobileView} />
+              {pageSelect()}
+            </Box>
           </Box>
-        </Box>
-      </ThemeProvider>
-    </div>
-  );
+        </ThemeProvider>
+      </div>
+    );
+  }
 }
-
 export default App;
