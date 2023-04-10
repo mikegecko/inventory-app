@@ -1,4 +1,4 @@
-
+const jwt = require('jsonwebtoken');
 //Login
 exports.login = (req,res,next) => {
     //Get username and password from request body
@@ -29,4 +29,13 @@ exports.update_password = (req,res,next) => {
     //Update password
     process.env.ADMIN_PASSWORD = newPassword;
     res.status(200).json({success: true, message: 'Password updated successfully'});
+}
+
+exports.requireAuth = (req,res,next) => {
+    if(req.session && req.session.authenticated){
+        //User is authenticated
+        return(next());
+    } else{
+        return(res.status(401).json({success: false, message: 'Unauthorized'}));
+    }
 }
