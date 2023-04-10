@@ -58,9 +58,7 @@ export default function Home(props) {
           gap: '1rem',
         }}
       >
-        <Paper elevation={2}>
-          <Typography variant="h4">Home</Typography>
-        </Paper>
+
         <Box
           sx={{
             width: "100%",
@@ -69,7 +67,8 @@ export default function Home(props) {
             alignItems: "flex-start",
             flexDirection: 'column',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            mt: '1rem'
           }}
         >
           <Card sx={{ minWidth: "275px", width: "auto", flex: "1 1 auto" }}>
