@@ -96,6 +96,7 @@ export default function EditItemForm(props) {
   useEffect(() => {
     setItem({...props.selectedItem});
     if(props.selectedItem !== undefined && props.selectedItem.image.data !== undefined){
+      // Displays Image using stored mongoDB data
       setItemImage(props.selectedItem.image);
       const dataUri = `data:${props.selectedItem.image.contentType};base64,${Buffer.from(props.selectedItem.image.data).toString('base64')}`;
       setImageSrc(dataUri);
