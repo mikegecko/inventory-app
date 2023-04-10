@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const auth_controller = require('../controllers/authController')
 //Controllers
 const inventory_controller = require('../controllers/inventoryController');
 
@@ -17,6 +17,6 @@ router.post('/', inventory_controller.inventory_create);
 router.put('/:id', inventory_controller.inventory_update);
 
 // DELETE an inventory item by ID
-router.delete('/:id', inventory_controller.inventory_delete);
+router.delete('/:id', auth_controller.requireAuth, inventory_controller.inventory_delete);
 
 module.exports = router;
