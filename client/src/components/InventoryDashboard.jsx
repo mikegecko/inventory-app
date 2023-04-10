@@ -21,13 +21,14 @@ export default function InventoryDashboard(props){
     const [selection, setSelection] = useState([]);
     const [selectedItem, setSelectedItem] = useState();
     const [subPage, setSubPage] = useState('grid');
+    const [hideControls, setHideControls] = useState(false);
 
     const subPageSelect = () => {
         switch (subPage) {
             case 'grid':
                 return <DataGrid onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
             case 'detail':
-                return <ItemDetail />
+                return <ItemDetail selectedItem={selectedItem} />
             default:
                 break;
         }
@@ -35,6 +36,7 @@ export default function InventoryDashboard(props){
 
     const handleItemDoubleClick = (e) => {
         console.log(e.id);
+        setHideControls(true);
         setSubPage('detail');
     }
 
@@ -75,7 +77,7 @@ export default function InventoryDashboard(props){
         <DeleteItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openDelete} selectedItem={selectedItem} handleDeleteItemSubmit={props.handleDeleteItemSubmit} />
         <EditItemForm handleClose={props.handleClose} handleClickOpenModal={props.handleClickOpenModal} open={props.openEdit} selectedItem={selectedItem} handleUpdateItemSubmit={props.handleUpdateItemSubmit}/>
         <Box sx={{width: 'calc(100% - 40px)', maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 157px)', margin: ' 0 20px 20px 20px'}}>
-            <Box sx={{display: 'flex', justifyContent: 'center', mb: '10px', mt: '10px'}}>
+            <Box sx={{display: !hideControls ? 'flex' : 'none', justifyContent: 'center', mb: '10px', mt: '10px'}}>
                 <Paper elevation={2} sx={{padding: '.5rem', width: 'auto'}}>
                     <ButtonGroup color="primary" sx={{ width: 'auto'}}>
                         <Button id="add" onClick={props.handleClickOpenModal}><AddIcon sx={{pointerEvents: 'none'}} /></Button>
