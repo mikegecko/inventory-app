@@ -6,7 +6,7 @@ const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require('cors');
-const db = require('./utils/db');
+const { db_connect } = require('./utils/db');
 //Environment vars
 const PORT = process.env.PORT || 3000;
 
@@ -33,6 +33,9 @@ app.use(logger("dev"));
 app.use(express.json({limit: '10mb'})); //Use json instead of html
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//Connect to database
+db_connect();
 
 //Routes
 app.use('/api/inventory', inventoryRouter);
