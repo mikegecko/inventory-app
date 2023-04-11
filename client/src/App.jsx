@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
 import Sidebar from "./components/Sidebar";
-import { Box, ThemeProvider } from "@mui/material";
+import { Alert, Box, IconButton, Snackbar, ThemeProvider } from "@mui/material";
 import { darkTheme, lightTheme } from "./components/Themes";
 import Header from "./components/Header";
 import InventoryDashboard from "./components/InventoryDashboard";
 import Home from "./components/Home";
 import Settings from "./components/Settings";
 import Tools from "./components/Tools";
+import CloseIcon from '@mui/icons-material/Close';
 
 function App() {
   const [inventoryItems, setInventoryItems] = useState([]); //Inventory -> set by axios api endpoint call to server.js
@@ -16,19 +17,30 @@ function App() {
   const [colorMode, setColorMode] = useState("dark"); // Light/Dark mode
   const [page, setPage] = useState("home"); //Page control for pageSelect
   const [mobileView, setMobileView] = useState(false);
+  const breakpoint = 768;
   /* Modal Controls */
   const [openNew, setOpenNew] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
-  const breakpoint = 768;
-
+  /* Snack Bar */
+  const [snackOpen, setSnackOpen] = useState(false);
+  const [snackInfo, setSnackInfo] = useState({});
 
   
+  const handleSnackClose = () => {
+    setSnackOpen(false);
+    setSnackInfo({...snackInfo, content: ''});
+  }
+  const setStateOfSnacks = (open, content, severity) => {
+    setSnackInfo({content: content, severity: severity});
+    setSnackOpen(open);
+  }
   const handleLogin = async(username, password) => {
     try {
       const response = await axios.post('/api/auth/login', {username, password});
       localStorage.setItem('token', response.data.token);
     } catch (error) {
+      setStateOfSnacks(true, error.response.data.message, 'error');
       console.error(error)
     }
   }
@@ -50,6 +62,7 @@ function App() {
       //console.log("Updated item", response.data);
       retrieveItems();
     } catch (error) {
+      setStateOfSnacks(true, error.response.data.message, 'error');
       console.error(error);
     }
   };
@@ -64,6 +77,7 @@ function App() {
       //console.log("Deleted item", response.data);
       retrieveItems();
     } catch (error) {
+      setStateOfSnacks(true, error.response.data.message, 'error');
       console.error(error);
     }
   };
@@ -75,6 +89,7 @@ function App() {
       //console.log("Created new item", response.data);
       retrieveItems();
     } catch (error) {
+      setStateOfSnacks(true, error.response.data.message, 'error');
       console.error(error);
     }
   };
@@ -215,6 +230,11 @@ function App() {
             <Box sx={{ width: "100%", height: "100%" }}>
               <Header page={page} mobileView={mobileView} />
               {pageSelect()}
+              <Snackbar open={snackOpen} autoHideDuration={5000} onClose={handleSnackClose} action={<IconButton onClick={handleSnackClose}><CloseIcon /></IconButton>}>
+                <Alert onClose={handleSnackClose} severity={snackInfo.severity}>
+                  {snackInfo.content}
+                </Alert>
+              </Snackbar>
             </Box>
           </Box>
         </ThemeProvider>
@@ -251,6 +271,11 @@ function App() {
             <Box sx={{ width: "100%", height: "100%" }}>
               <Header page={page} mobileView={mobileView} />
               {pageSelect()}
+              <Snackbar sx={{mb: '4rem'}} open={snackOpen} autoHideDuration={5000} onClose={handleSnackClose} action={<IconButton onClick={handleSnackClose}><CloseIcon /></IconButton>}>
+                <Alert onClose={handleSnackClose} severity={snackInfo.severity}>
+                  {snackInfo.content}
+                </Alert>
+              </Snackbar>
             </Box>
           </Box>
         </ThemeProvider>
