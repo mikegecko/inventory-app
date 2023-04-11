@@ -40,6 +40,7 @@ function App() {
       const response = await axios.post('/api/auth/login', {username, password});
       localStorage.setItem('token', response.data.token);
       setStateOfSnacks(true, 'Logged In', 'success');
+      setPage('home');
     } catch (error) {
       setStateOfSnacks(true, error.response.data.message, 'error');
       console.error(error)
