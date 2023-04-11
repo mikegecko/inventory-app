@@ -14,6 +14,9 @@ The Inventory App is a web-based tool for managing and organizing items in a sim
 - [MongoDB](https://www.mongodb.com/)
 - [Node](https://nodejs.org/en)
 
+## Live [Demo](https://bitter-paper-7439.fly.dev/)
+
+
 ## Getting Started
 To use the Inventory App, you will need to have Node.js and MongoDB installed on your machine. Once you have installed these dependencies, follow these steps:
 
