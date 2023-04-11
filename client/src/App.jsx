@@ -230,7 +230,7 @@ function App() {
             <Box sx={{ width: "100%", height: "100%" }}>
               <Header page={page} mobileView={mobileView} />
               {pageSelect()}
-              <Snackbar open={snackOpen} autoHideDuration={5000} onClose={handleSnackClose} action={<IconButton onClick={handleSnackClose}><CloseIcon /></IconButton>}>
+              <Snackbar sx={{ml: '7%'}} open={snackOpen} autoHideDuration={5000} onClose={handleSnackClose} action={<IconButton onClick={handleSnackClose}><CloseIcon /></IconButton>}>
                 <Alert onClose={handleSnackClose} severity={snackInfo.severity}>
                   {snackInfo.content}
                 </Alert>
