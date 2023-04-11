@@ -159,7 +159,6 @@ export default function Home(props) {
           flexDirection: "column",
           margin: "1rem",
           gap: "1rem",
-          minWidth: "955px",
           width: "calc(100% - 2rem)",
           height: "calc(100% - 2rem - 64px)",
         }}

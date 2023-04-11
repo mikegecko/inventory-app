@@ -23,7 +23,7 @@ export default function InventoryDashboard(props){
     const subPageSelect = () => {
         switch (subPage) {
             case 'grid':
-                return <DataGrid sx={{height: '100%'}} onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columns} rows={modifiedInventoryItems(props.inventoryItems)} />
+                return <DataGrid sx={{height: '100%'}} onRowDoubleClick={handleItemDoubleClick} rowSelectionModel={selection} onRowSelectionModelChange={(newSelection) => setSelection(newSelection)} columns={columnSwitcher()} rows={modifiedInventoryItems(props.inventoryItems)} />
             case 'detail':
                 return <ItemDetail handleGoBack={handleGoBack} selectedItem={selectedItem} mobileView={props.mobileView} />
             default:
@@ -50,17 +50,33 @@ export default function InventoryDashboard(props){
         //console.log(newItems);
         return(newItems);
     }
-
-    const columns = [
-        {field: 'id', headerName: 'ID', width: 70},
-        {field: 'title', headerName: 'Name', width: 160},
-        {field: 'description', headerName: 'Description', width: 200},
-        {field: 'category', headerName: 'Category', width: 160},
-        {field: 'price', headerName: 'Price', width: 75, type: 'number'},
-        {field: 'quantity', headerName: 'Qty', width:70, type: 'number'},
-        {field: '_id', headerName: '_id', width: 210}
-        
-    ]
+    const columnSwitcher = () => {
+        if(props.mobileView){
+            const columns = [
+                {field: 'id', headerName: 'ID', width: 70},
+                {field: 'title', headerName: 'Name', width: 160},
+                // {field: 'description', headerName: 'Description', width: 200},
+                {field: 'category', headerName: 'Category', width: 160},
+                {field: 'price', headerName: 'Price', width: 75, type: 'number'},
+                {field: 'quantity', headerName: 'Qty', width:70, type: 'number'},
+                // {field: '_id', headerName: '_id', width: 210}
+            ]
+            return(columns);
+        }
+        else{
+            const columns = [
+                {field: 'id', headerName: 'ID', width: 70},
+                {field: 'title', headerName: 'Name', width: 160},
+                {field: 'description', headerName: 'Description', width: 200},
+                {field: 'category', headerName: 'Category', width: 160},
+                {field: 'price', headerName: 'Price', width: 75, type: 'number'},
+                {field: 'quantity', headerName: 'Qty', width:70, type: 'number'},
+                // {field: '_id', headerName: '_id', width: 210}
+            ]
+            return(columns);
+        }
+    }
+    
 
     useEffect(() => {
         //console.log(selection);
@@ -74,6 +90,9 @@ export default function InventoryDashboard(props){
     
     const gridWidthOverride = (overrideVal) => {
         if(overrideVal === 'grid'){
+            if(props.mobileView){
+                return({width: 'calc(100%)' , maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 60px )', margin: ' 0px', overflow: 'auto'});
+            }
             return({width: 'calc(100% - 64px)' , maxWidth: '100%', maxHeight:'100vh', height: 'calc(100% - 60px )', margin: ' 0px', overflow: 'auto'});
         }
         if(overrideVal === 'detail'){

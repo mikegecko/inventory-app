@@ -83,7 +83,6 @@ export default function ItemDetail(props) {
             gap: "1rem",
             width: "calc(100% - 40px)",
             height: "calc(100% - 2rem - 64px)",
-            minWidth: "915px",
           }}
         >
           <Paper elevation={2}>
