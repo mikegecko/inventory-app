@@ -26,6 +26,7 @@ export default function Settings(props) {
     //console.log('Removed auth token');
     localStorage.removeItem("token");
     setTempToken('');
+    props.setStateOfSnacks(true, 'Logged Out', 'info');
   };
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -36,6 +37,7 @@ export default function Settings(props) {
 
   const handleSubmit = (e) => {
     //console.log(username, password);
+    e.preventDefault();
     props.handleLogin(username, password);
     clearLoginInfo();
     return;
@@ -62,9 +64,11 @@ export default function Settings(props) {
       <Paper elevation={2}>
         <Typography variant="h4">Settings</Typography>
         <Divider />
+        <form onSubmit={handleSubmit}>
         <Box
           sx={{ display: "flex", flexDirection: "column", gap: "1rem", mt: 2 }}
         >
+          
           <Box
             sx={{
               display: "flex",
@@ -76,7 +80,7 @@ export default function Settings(props) {
             <Typography variant="h5" color="text.secondary">
               Username:
             </Typography>
-            <TextField type="text" value={username} onChange={handleUsernameChange} />
+            <TextField autoComplete="username" type="text" value={username} onChange={handleUsernameChange} />
           </Box>
           <Box
             sx={{
@@ -89,14 +93,15 @@ export default function Settings(props) {
             <Typography variant="h5" color="text.secondary">
               Password:
             </Typography>
-            <TextField type="password" value={password} onChange={handlePasswordChange} />
+            <TextField autoComplete="current-password" type="password" value={password} onChange={handlePasswordChange} />
           </Box>
+          
         </Box>
         <Box sx={{display: 'flex', gap: '2rem', justifyContent: 'center'}}>
         <Button
           variant="contained"
           sx={{ margin: "1rem 0rem 1rem 0rem" }}
-          onClick={handleSubmit}
+          type="submit"
         >
           Login
         </Button>
@@ -109,6 +114,7 @@ export default function Settings(props) {
           Logout
         </Button>
         </Box>
+        </form>
       </Paper>
     </Box>
   );
