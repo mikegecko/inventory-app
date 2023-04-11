@@ -23,7 +23,7 @@ export default function Settings(props) {
   const [tempToken, setTempToken] = useState('');
 
   const handleRemoveAuth = (e) => {
-    console.log('Removed auth token');
+    //console.log('Removed auth token');
     localStorage.removeItem("token");
     setTempToken('');
   };
@@ -35,10 +35,9 @@ export default function Settings(props) {
   };
 
   const handleSubmit = (e) => {
-    console.log(username, password);
+    //console.log(username, password);
     props.handleLogin(username, password);
     clearLoginInfo();
-    setTempToken('Refresh to see token');
     return;
   };
 
@@ -109,9 +108,6 @@ export default function Settings(props) {
         >
           Logout
         </Button>
-        </Box>
-        <Box sx={{mb:2, display: 'flex', flexGrow: 1, height: '4rem', width: '100%', justifyContent: 'center'}}>
-            Authorized: { tempToken ? <CheckIcon /> : <CloseIcon /> }
         </Box>
       </Paper>
     </Box>
