@@ -152,7 +152,7 @@ function App() {
       case "tools":
         return <Tools mobileView={mobileView} />;
       case "settings":
-        return <Settings handleLogin={handleLogin} mobileView={mobileView} />;
+        return <Settings setStateOfSnacks={setStateOfSnacks} handleLogin={handleLogin} mobileView={mobileView} />;
       default:
         return <Home inventoryItems={inventoryItems} mobileView={mobileView}/>;
         break;
