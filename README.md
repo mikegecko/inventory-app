@@ -14,7 +14,7 @@ The Inventory App is a web-based tool for managing and organizing items in a sim
 - [MongoDB](https://www.mongodb.com/)
 - [Node](https://nodejs.org/en)
 
-## Live [Demo](https://bitter-paper-7439.fly.dev/)
+## Live [Demo](https://falling-snow-7935.fly.dev/)
 
 
 ## Getting Started
